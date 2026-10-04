@@ -1,54 +1,242 @@
 {
+  "tracks": [
+    {
+      "id": "itGeneral",
+      "name": "Đa Vũ Trụ CNTT",
+      "icon": "🔮",
+      "tagline": "Khám phá toàn diện: AI, Game, Web, An ninh mạng, Product",
+      "badge": "TỔNG HỢP CNTT"
+    },
+    {
+      "id": "gameDev",
+      "name": "Lập Trình Game",
+      "icon": "🎮",
+      "tagline": "Sáng tạo thế giới ảo: Gameplay, 3D Art, Game Design, Engine",
+      "badge": "CHUYÊN NGÀNH GAME"
+    },
+    {
+      "id": "aiFuture",
+      "name": "Lập Trình AI & Data",
+      "icon": "🤖",
+      "tagline": "Trí tuệ nhân tạo: GenAI, Machine Learning, Computer Vision, MLOps",
+      "badge": "CHUYÊN NGÀNH AI"
+    },
+    {
+      "id": "webDev",
+      "name": "Lập Trình Web & Cloud",
+      "icon": "🌐",
+      "tagline": "Ứng dụng số hiện đại: Frontend, Backend API, Cloud & DevOps",
+      "badge": "CHUYÊN NGÀNH WEB"
+    }
+  ],
+  "universesMeta": {
+    "itGeneral": {
+      "aiFuture": {
+        "name": "AI ENGINEER",
+        "icon": "🤖",
+        "subtitle": "Kỹ Sư Trí Tuệ Nhân Tạo & Machine Learning",
+        "desc": "Bạn đam mê tự động hóa, mô hình trí tuệ nhân tạo và biến dữ liệu thành các giải pháp thông minh vượt trội.",
+        "skills": ["Python", "PyTorch / TensorFlow", "LLM / LangChain", "Prompt Engineering", "Data Analytics"],
+        "advice": "Hãy tập trung vào thuật toán học máy, xây dựng AI Agent và tích hợp mô hình ngôn ngữ lớn vào sản phẩm thực tế."
+      },
+      "gameDev": {
+        "name": "GAME DEVELOPER",
+        "icon": "🎮",
+        "subtitle": "Nhà Phát Triển & Sáng Tạo Game",
+        "desc": "Bạn có niềm đam mê mãnh liệt với trải nghiệm giải trí tương tác, logic trò chơi, đồ họa 3D và vật lý ảo.",
+        "skills": ["Unity / C#", "Unreal Engine / C++", "Blender / 3D Art", "Game Physics", "Level Design"],
+        "advice": "Hãy bắt tay làm ngay các dự án game mini (Game Jam), luyện tư duy thuật toán hình học và làm chủ Unity hoặc Unreal."
+      },
+      "webDev": {
+        "name": "WEB & CLOUD ARCHITECT",
+        "icon": "🌐",
+        "subtitle": "Kỹ Sư Phát Triển Web & Hệ Thống Đám Mây",
+        "desc": "Bạn yêu thích xây dựng những nền tảng web mạnh mẽ, giao diện mượt mà và hệ thống backend chịu tải hàng triệu người dùng.",
+        "skills": ["JavaScript / TypeScript", "React / Next.js", "Node.js / Go", "PostgreSQL / Redis", "Docker / AWS"],
+        "advice": "Làm chủ kiến trúc Fullstack, tối ưu hiệu năng web và xây dựng các hệ thống microservices trên nền tảng đám mây."
+      },
+      "cyberSec": {
+        "name": "CYBER SECURITY DEFENDER",
+        "icon": "🛡️",
+        "subtitle": "Chuyên Gia An Ninh Mạng & Hacker Mũ Trắng",
+        "desc": "Bạn có tư duy phản biện sắc bén, luôn tò mò về lỗ hổng hệ thống và bảo vệ dữ liệu trước mọi cuộc tấn công mạng.",
+        "skills": ["Network & Protocols", "Penetration Testing", "Cryptography", "Linux & Shell", "Security Auditing"],
+        "advice": "Tham gia các giải đấu CTF, nghiên cứu mã độc, kiểm thử bảo mật web (OWASP Top 10) và học chứng chỉ CEH/CompTIA."
+      },
+      "product": {
+        "name": "PRODUCT OWNER & TECH LEAD",
+        "icon": "🚀",
+        "subtitle": "Quản Lý Sản Phẩm & Định Hướng Chiến Lược",
+        "desc": "Bạn có tầm nhìn bao quát, thích kết nối con người với công nghệ và tối ưu hóa giá trị sản phẩm cho khách hàng.",
+        "skills": ["Business Analysis", "Agile / Scrum", "Product Strategy", "User Journey Mapping", "Tech Architecture"],
+        "advice": "Rèn luyện tư duy sản phẩm (Product Thinking), kỹ năng giao tiếp dẫn dắt team và phân tích số liệu người dùng."
+      },
+      "uiux": {
+        "name": "UI/UX & CREATIVE DESIGNER",
+        "icon": "🎨",
+        "subtitle": "Nhà Thiết Kế Trải Nghiệm & Giao Diện Số",
+        "desc": "Bạn nhạy bén về thẩm mỹ thị giác, thấu hiểu tâm lý hành vi người dùng và luôn tạo ra những trải nghiệm số say đắm.",
+        "skills": ["Figma / UI Design", "User Research", "Design Systems", "Prototyping & Motion", "Frontend Basics"],
+        "advice": "Xây dựng portfolio thiết kế ấn tượng trên Figma, nghiên cứu tâm lý học trải nghiệm (HCI) và làm việc chặt chẽ với Dev."
+      }
+    },
+    "gameDev": {
+      "gameplay": {
+        "name": "GAMEPLAY PROGRAMMER",
+        "icon": "🕹️",
+        "subtitle": "Lập Trình Viên Logic & Cơ Chế Trò Chơi",
+        "desc": "Bạn là linh hồn của trò chơi! Bạn biến các ý tưởng điều khiển, combat, combo chiêu thức và hành vi quái vật thành hiện thực mượt mà.",
+        "skills": ["C# / C++", "Unity / Unreal Engine", "State Machines / AI Game", "Physics & Collision", "Animation Rigging"],
+        "advice": "Tập trung xây dựng hệ thống điều khiển nhân vật 'Game Feel' đỉnh cao và tối ưu hóa frame rate 60-120 FPS."
+      },
+      "gameArtist": {
+        "name": "GAME ARTIST & VFX WIZARD",
+        "icon": "🎨",
+        "subtitle": "Họa Sĩ Đồ Họa 3D, Hiệu Ứng & Shader",
+        "desc": "Bạn tạo nên vẻ đẹp thị giác cho thế giới game với mô hình 3D sống động, ánh sáng ma mị, hiệu ứng phép thuật cháy nổ mãn nhãn.",
+        "skills": ["Blender / Maya / 3ds Max", "Shader Graph / HLSL", "Substance Painter", "Niagara VFX", "Concept Art"],
+        "advice": "Thực hành làm Shader đồ họa, làm chủ quy trình dựng model PBR và tối ưu số lượng đa giác (Poly count) cho game."
+      },
+      "gameDesigner": {
+        "name": "GAME & LEVEL DESIGNER",
+        "icon": "📜",
+        "subtitle": "Kiến Trúc Sư Thế Giới Game & Cốt Truyện",
+        "desc": "Bạn là người định hình luật chơi, thiết kế bản đồ thử thách, cốt truyện lôi cuốn và cân bằng kinh tế trong game.",
+        "skills": ["Game Mechanics Design", "Level Architecture", "Game Economy & Balancing", "Storytelling", "Player Psychology"],
+        "advice": "Viết Game Design Document (GDD) chi tiết, phân tích các tựa game AAA/Indie nổi tiếng và thử nghiệm liên tục với playtesters."
+      },
+      "engineDev": {
+        "name": "GAME ENGINE & CORE ARCHITECT",
+        "icon": "⚙️",
+        "subtitle": "Kỹ Sư Engine & Đồ Họa Hiệu Năng Cao",
+        "desc": "Bạn thích đào sâu vào cốt lõi: tối ưu hóa bộ nhớ, dựng hình đa luồng (Multi-threading), viết engine riêng và rendering pipeline.",
+        "skills": ["C++ / Rust", "Vulkan / DirectX / OpenGL", "Memory Management", "Multithreading", "Spatial Partitioning"],
+        "advice": "Đọc sách Game Engine Architecture, tự viết một 2D/3D Renderer từ đầu và làm chủ lập trình cấp thấp (Low-level)."
+      },
+      "gameQA": {
+        "name": "GAME TESTER & BALANCE MASTER",
+        "icon": "🎯",
+        "subtitle": "Chuyên Gia Kiểm Thử Game & Cân Bằng Trải Nghiệm",
+        "desc": "Bạn có đôi mắt thần săn lùng mọi lỗi glitch kẹt map, bug đúp đồ và đảm bảo game cân bằng hoàn hảo trước ngày ra mắt.",
+        "skills": ["Playtesting & Exploits Hunt", "Bug Tracking (Jira)", "Automation Test Scripting", "Combat Balancing", "Telemetry Analysis"],
+        "advice": "Rèn luyện khả năng tái hiện bug khó, hiểu rõ meta game và đóng góp ý kiến giúp cải thiện trải nghiệm game thủ."
+      }
+    },
+    "aiFuture": {
+      "llmPrompt": {
+        "name": "GENAI & AI AGENT ARCHITECT",
+        "icon": "🧠",
+        "subtitle": "Kỹ Sư AI Thế Hệ Mới & Hệ Thống Tự Động Hóa",
+        "desc": "Bạn là bậc thầy điều khiển các mô hình ngôn ngữ lớn (LLM), xây dựng Multi-Agent tự hành, RAG và biến ý tưởng thành siêu ứng dụng.",
+        "skills": ["LangChain / LlamaIndex", "Prompt Engineering", "Vector Databases (Pinecone/Chroma)", "Function Calling & Tools", "Python"],
+        "advice": "Xây dựng các Agent giải quyết bài toán thực tiễn của doanh nghiệp và nắm vững kỹ thuật Fine-tuning & RAG nâng cao."
+      },
+      "mlEngineer": {
+        "name": "DEEP LEARNING & ML SCIENTIST",
+        "icon": "🔬",
+        "subtitle": "Nhà Khoa Học Học Sâu & Thuật Toán Mô Hình",
+        "desc": "Bạn đam mê cấu trúc mạng nơ-ron, hàm mất mát (loss function), toán đại số tuyến tính và huấn luyện các mô hình tiên tiến.",
+        "skills": ["PyTorch / TensorFlow", "Transformers Architecture", "CUDA & GPU Optimization", "Mathematics & Statistics", "Model Training"],
+        "advice": "Đọc các paper nghiên cứu mới trên arXiv, tham gia các cuộc thi Kaggle và tự xây dựng kiến trúc mạng neural tùy biến."
+      },
+      "dataScientist": {
+        "name": "BIG DATA & DATA STRATEGIST",
+        "icon": "📊",
+        "subtitle": "Chuyên Gia Dữ Liệu Lớn & Phân Tích Chiến Lược",
+        "desc": "Dữ liệu là dầu mỏ mới, và bạn là nhà tinh chế xuất sắc! Bạn tìm ra những quy luật ẩn và dự báo tương lai từ hàng tỷ dòng dữ liệu.",
+        "skills": ["SQL & BigQuery", "Pandas / Polars / Spark", "Data Visualization (Tableau/PowerBI)", "Predictive Modeling", "A/B Testing"],
+        "advice": "Thực hành phân tích các bộ dữ liệu lớn thực tế, rèn luyện kỹ năng Data Storytelling để thuyết phục người nghe."
+      },
+      "computerVision": {
+        "name": "COMPUTER VISION & ROBOTICS",
+        "icon": "👁️",
+        "subtitle": "Kỹ Sư Thị Giác Máy Tính & Robot Thông Minh",
+        "desc": "Bạn mang lại đôi mắt cho cỗ máy: nhận diện khuôn mặt, phát hiện vật thể y tế, xe tự hành và mô hình hóa không gian 3D.",
+        "skills": ["OpenCV", "YOLO / Segment Anything", "3D Computer Vision / NeRF", "Robotics (ROS)", "Edge AI Deployment"],
+        "advice": "Triển khai các mô hình thị giác máy tính trên thiết bị nhúng (Raspberry Pi, Jetson Nano) và tối ưu độ trễ xử lý thời gian thực."
+      },
+      "mlOps": {
+        "name": "MLOPS & AI INFRASTRUCTURE",
+        "icon": "⚡",
+        "subtitle": "Kỹ Sư Vận Hành & Hạ Tầng Mô Hình AI",
+        "desc": "Bạn là cầu nối đưa mô hình từ notebook nghiên cứu lên môi trường sản xuất quy mô lớn với độ trễ thấp và độ tin cậy tuyệt đối.",
+        "skills": ["Docker & Kubernetes", "MLflow / Kubeflow", "Triton Inference Server", "CI/CD for ML", "Cloud GPUs (AWS/GCP)"],
+        "advice": "Xây dựng pipeline huấn luyện và triển khai tự động (Continuous Training & Deployment) cho các mô hình AI lớn."
+      }
+    },
+    "webDev": {
+      "frontend": {
+        "name": "FRONTEND MASTER",
+        "icon": "🎨",
+        "subtitle": "Kiến Trúc Sư Giao Diện Web & Tương Tác Hiện Đại",
+        "desc": "Bạn tạo ra những trải nghiệm web lung linh, phản hồi tức thì với tốc độ 60fps và hiệu ứng mượt mà như ứng dụng native.",
+        "skills": ["React / Next.js / Vue", "TypeScript", "Tailwind CSS / CSS Animation", "Web Vitals & Performance", "PWA"],
+        "advice": "Nắm vững JavaScript chuyên sâu, làm chủ server-side rendering (SSR) và tối ưu hóa Core Web Vitals của Google."
+      },
+      "backend": {
+        "name": "BACKEND & DISTRIBUTED SYSTEMS",
+        "icon": "⚙️",
+        "subtitle": "Kỹ Sư Hệ Thống Máy Chủ & API Hiệu Năng Cao",
+        "desc": "Bạn điều phối dòng chảy dữ liệu ngầm, thiết kế cơ sở dữ liệu chịu tải hàng triệu truy vấn và bảo mật API an toàn tuyệt đối.",
+        "skills": ["Node.js / Go / Java", "PostgreSQL / MongoDB / Redis", "gRPC / REST / GraphQL", "Microservices", "Message Queue (Kafka)"],
+        "advice": "Luyện tập thiết kế hệ thống (System Design), quản lý transaction cơ sở dữ liệu và tối ưu hóa index truy vấn."
+      },
+      "devops": {
+        "name": "DEVOPS & CLOUD ARCHITECT",
+        "icon": "☁️",
+        "subtitle": "Kỹ Sư Tự Động Hóa Triển Khai & Đám Mây",
+        "desc": "Bạn đảm bảo hệ thống luôn sẵn sàng 99.99%, tự động hóa mọi khâu release và bảo vệ hạ tầng đám mây an toàn vững chãi.",
+        "skills": ["Docker / Kubernetes", "CI/CD (GitHub Actions)", "Terraform / IaC", "AWS / GCP / Azure", "Prometheus / Grafana"],
+        "advice": "Tự động hóa mọi tác vụ lặp lại, học về Container Orchestration và kiến trúc bất biến (Immutable Infrastructure)."
+      },
+      "fullstack": {
+        "name": "FULLSTACK NINJA",
+        "icon": "⚡",
+        "subtitle": "Kỹ Sư Toàn Năng Từ Giao Diện Đến Máy Chủ",
+        "desc": "Bạn là chiến binh độc lập có thể tự mình xây dựng trọn vẹn một sản phẩm khởi nghiệp từ ý tưởng đến khi ra mắt thị trường.",
+        "skills": ["Fullstack Frameworks", "End-to-End Architecture", "Database Modeling", "API Integration", "Rapid Prototyping"],
+        "advice": "Tự xây dựng các dự án SaaS cá nhân hoàn chỉnh, rèn luyện tốc độ hoàn thiện tính năng (Time-to-market)."
+      },
+      "uiuxWeb": {
+        "name": "WEB UX & PRODUCT DESIGNER",
+        "icon": "👁️",
+        "subtitle": "Chuyên Gia Trải Nghiệm Người Dùng Web",
+        "desc": "Bạn đảm bảo người dùng có hành trình mượt mà nhất trên trang web, tăng tỷ lệ chuyển đổi và nâng tầm thương hiệu.",
+        "skills": ["Figma & Design System", "User Journey & Usability Test", "A/B Testing", "Accessibility (a11y)", "Conversion Optimization"],
+        "advice": "Kết hợp thẩm mỹ với tâm lý học hành vi người dùng và đo lường hiệu quả thiết kế bằng các chỉ số chuyển đổi thực tế."
+      }
+    }
+  },
   "players": [
     {
       "id": 1,
       "name": "Minh Anh",
+      "track": "itGeneral",
       "joinedAt": "2026-10-04T06:23:36.548Z"
     },
     {
       "id": 2,
       "name": "Hoàng Long",
+      "track": "aiFuture",
       "joinedAt": "2026-10-04T06:23:01.548Z"
     },
     {
       "id": 3,
-      "name": "Thu Hà",
+      "name": "Quang Huy",
+      "track": "gameDev",
       "joinedAt": "2026-10-04T06:22:26.548Z"
     },
     {
       "id": 4,
       "name": "Đức Thắng",
+      "track": "itGeneral",
       "joinedAt": "2026-10-04T06:21:51.548Z"
     },
     {
       "id": 5,
       "name": "Phương Linh",
+      "track": "webDev",
       "joinedAt": "2026-10-04T06:21:16.548Z"
-    },
-    {
-      "id": 6,
-      "name": "Minh Anh",
-      "joinedAt": "2026-10-04T07:01:14.377Z"
-    },
-    {
-      "id": 7,
-      "name": "Hoàng Long",
-      "joinedAt": "2026-10-04T07:00:39.377Z"
-    },
-    {
-      "id": 8,
-      "name": "Thu Hà",
-      "joinedAt": "2026-10-04T07:00:04.378Z"
-    },
-    {
-      "id": 9,
-      "name": "Đức Thắng",
-      "joinedAt": "2026-10-04T06:59:29.378Z"
-    },
-    {
-      "id": 10,
-      "name": "Phương Linh",
-      "joinedAt": "2026-10-04T06:58:54.378Z"
     }
   ],
   "results": [
@@ -56,324 +244,422 @@
       "id": 1,
       "playerId": 1,
       "playerName": "Minh Anh",
+      "track": "itGeneral",
       "scores": {
-        "growth": 4,
-        "experience": 1,
-        "product": 1,
-        "bugHunter": 1,
-        "aiFuture": 0
+        "aiFuture": 4,
+        "gameDev": 1,
+        "webDev": 1,
+        "cyberSec": 1,
+        "product": 0,
+        "uiux": 0
       },
-      "primaryUniverse": "growth",
+      "primaryUniverse": "aiFuture",
       "createdAt": "2026-10-04T06:23:36.548Z"
     },
     {
       "id": 2,
       "playerId": 2,
       "playerName": "Hoàng Long",
+      "track": "aiFuture",
       "scores": {
-        "growth": 0,
-        "experience": 1,
-        "product": 1,
-        "bugHunter": 0,
-        "aiFuture": 5
+        "llmPrompt": 5,
+        "mlEngineer": 1,
+        "dataScientist": 1,
+        "computerVision": 0,
+        "mlOps": 0
       },
-      "primaryUniverse": "aiFuture",
+      "primaryUniverse": "llmPrompt",
       "createdAt": "2026-10-04T06:23:01.548Z"
     },
     {
       "id": 3,
       "playerId": 3,
-      "playerName": "Thu Hà",
+      "playerName": "Quang Huy",
+      "track": "gameDev",
       "scores": {
-        "growth": 1,
-        "experience": 4,
-        "product": 1,
-        "bugHunter": 1,
-        "aiFuture": 0
+        "gameplay": 5,
+        "gameArtist": 1,
+        "gameDesigner": 1,
+        "engineDev": 0,
+        "gameQA": 0
       },
-      "primaryUniverse": "experience",
+      "primaryUniverse": "gameplay",
       "createdAt": "2026-10-04T06:22:26.548Z"
     },
     {
       "id": 4,
       "playerId": 4,
       "playerName": "Đức Thắng",
+      "track": "itGeneral",
       "scores": {
-        "growth": 0,
-        "experience": 0,
-        "product": 1,
-        "bugHunter": 5,
-        "aiFuture": 1
+        "aiFuture": 1,
+        "gameDev": 0,
+        "webDev": 1,
+        "cyberSec": 5,
+        "product": 0,
+        "uiux": 0
       },
-      "primaryUniverse": "bugHunter",
+      "primaryUniverse": "cyberSec",
       "createdAt": "2026-10-04T06:21:51.548Z"
     },
     {
       "id": 5,
       "playerId": 5,
       "playerName": "Phương Linh",
+      "track": "webDev",
       "scores": {
-        "growth": 1,
-        "experience": 1,
-        "product": 4,
-        "bugHunter": 0,
-        "aiFuture": 1
+        "frontend": 4,
+        "backend": 1,
+        "devops": 0,
+        "fullstack": 1,
+        "uiuxWeb": 1
       },
-      "primaryUniverse": "product",
+      "primaryUniverse": "frontend",
       "createdAt": "2026-10-04T06:21:16.548Z"
-    },
-    {
-      "id": 6,
-      "playerId": 6,
-      "playerName": "Minh Anh",
-      "scores": {
-        "growth": 4,
-        "experience": 1,
-        "product": 1,
-        "bugHunter": 1,
-        "aiFuture": 0
-      },
-      "primaryUniverse": "growth",
-      "createdAt": "2026-10-04T07:01:14.377Z"
-    },
-    {
-      "id": 7,
-      "playerId": 7,
-      "playerName": "Hoàng Long",
-      "scores": {
-        "growth": 0,
-        "experience": 1,
-        "product": 1,
-        "bugHunter": 0,
-        "aiFuture": 5
-      },
-      "primaryUniverse": "aiFuture",
-      "createdAt": "2026-10-04T07:00:39.377Z"
-    },
-    {
-      "id": 8,
-      "playerId": 8,
-      "playerName": "Thu Hà",
-      "scores": {
-        "growth": 1,
-        "experience": 4,
-        "product": 1,
-        "bugHunter": 1,
-        "aiFuture": 0
-      },
-      "primaryUniverse": "experience",
-      "createdAt": "2026-10-04T07:00:04.378Z"
-    },
-    {
-      "id": 9,
-      "playerId": 9,
-      "playerName": "Đức Thắng",
-      "scores": {
-        "growth": 0,
-        "experience": 0,
-        "product": 1,
-        "bugHunter": 5,
-        "aiFuture": 1
-      },
-      "primaryUniverse": "bugHunter",
-      "createdAt": "2026-10-04T06:59:29.378Z"
-    },
-    {
-      "id": 10,
-      "playerId": 10,
-      "playerName": "Phương Linh",
-      "scores": {
-        "growth": 1,
-        "experience": 1,
-        "product": 4,
-        "bugHunter": 0,
-        "aiFuture": 1
-      },
-      "primaryUniverse": "product",
-      "createdAt": "2026-10-04T06:58:54.378Z"
     }
   ],
   "questions": [
     {
-      "id": 1,
-      "text": "Website vừa launch nhưng gần như không có người truy cập. Bạn muốn làm gì đầu tiên?",
+      "id": 101,
+      "track": "itGeneral",
+      "text": "Một sản phẩm công nghệ vừa ra mắt nhưng gặp vấn đề. Bạn muốn nhận xử lý thử thách nào nhất?",
       "answers": [
-        {
-          "text": "Tìm cách kéo traffic từ Google và mạng xã hội",
-          "universe": "growth"
-        },
-        {
-          "text": "Xem người dùng có hiểu giao diện và CTA không",
-          "universe": "experience"
-        },
-        {
-          "text": "Kiểm tra website đang giải quyết đúng nhu cầu chưa",
-          "universe": "product"
-        },
-        {
-          "text": "Tìm lỗi khiến tracking, form hoặc chức năng bị hỏng",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "Dùng AI phân tích nhanh nội dung và đề xuất cải thiện",
-          "universe": "aiFuture"
-        }
+        { "text": "Dùng AI và mô hình ngôn ngữ để tự động trả lời hỗ trợ người dùng ngay tức thì", "universe": "aiFuture" },
+        { "text": "Thêm các yếu tố trò chơi hóa (Gamification) tương tác giúp người dùng thích thú", "universe": "gameDev" },
+        { "text": "Nâng cấp giao diện mượt mà và tối ưu tốc độ tải trang phản hồi cực nhanh", "universe": "webDev" },
+        { "text": "Rà soát toàn bộ lỗ hổng bảo mật và phòng chống nguy cơ tấn công dữ liệu", "universe": "cyberSec" },
+        { "text": "Khảo sát phỏng vấn người dùng để thiết kế lại trải nghiệm trực quan hơn", "universe": "uiux" },
+        { "text": "Họp lại toàn team, ưu tiên tính năng cốt lõi và định hình lại lộ trình phát triển", "universe": "product" }
       ]
     },
     {
-      "id": 2,
-      "text": "Team chỉ còn 1 ngày trước deadline. Bạn tự nhiên muốn nhận phần việc nào nhất?",
+      "id": 102,
+      "track": "itGeneral",
+      "text": "Khi mở một ứng dụng hay trò chơi mới, điều gì thu hút sự tò mò của bạn đầu tiên?",
       "answers": [
-        {
-          "text": "Chuẩn bị nội dung và kế hoạch thu hút người dùng",
-          "universe": "growth"
-        },
-        {
-          "text": "Chỉnh giao diện để dễ dùng và rõ ràng hơn",
-          "universe": "experience"
-        },
-        {
-          "text": "Sắp xếp ưu tiên và giúp team chốt việc quan trọng",
-          "universe": "product"
-        },
-        {
-          "text": "Test các luồng quan trọng trước khi release",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "Tìm cách dùng AI để team hoàn thành nhanh hơn",
-          "universe": "aiFuture"
-        }
+        { "text": "Tính năng AI thông minh hoặc gợi ý nội dung chuẩn xác đến bất ngờ", "universe": "aiFuture" },
+        { "text": "Cơ chế điều khiển mượt mà, hiệu ứng chiêu thức và tương tác vật lý sống động", "universe": "gameDev" },
+        { "text": "Giao diện website/app load cực nhanh, bố cục hài hòa và tiện dụng", "universe": "webDev" },
+        { "text": "Cách ứng dụng xác thực đăng nhập và bảo vệ quyền riêng tư người dùng", "universe": "cyberSec" },
+        { "text": "Màu sắc, typo, animation chuyển cảnh tinh tế và cảm xúc khi sử dụng", "universe": "uiux" },
+        { "text": "Mô hình kinh doanh và giá trị thực tế mà sản phẩm mang lại cho khách hàng", "universe": "product" }
       ]
     },
     {
-      "id": 3,
-      "text": "Khi dùng một app mới, điều gì khiến bạn chú ý nhất?",
+      "id": 103,
+      "track": "itGeneral",
+      "text": "Nếu được tham gia một Hackathon trong 24h, bạn muốn giữ vai trò chủ chốt nào?",
       "answers": [
-        {
-          "text": "App này thu hút và giữ người dùng bằng cách nào?",
-          "universe": "growth"
-        },
-        {
-          "text": "Giao diện có đẹp, trực quan và dễ thao tác không?",
-          "universe": "experience"
-        },
-        {
-          "text": "Tính năng cốt lõi giải quyết vấn đề gì?",
-          "universe": "product"
-        },
-        {
-          "text": "Có cách nào làm app lỗi không nhỉ?",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "Có thể thêm AI vào đâu để app thông minh hơn?",
-          "universe": "aiFuture"
-        }
+        { "text": "Xây dựng AI Agent, huấn luyện mô hình hoặc tạo luồng tự động hóa thông minh", "universe": "aiFuture" },
+        { "text": "Lập trình logic trò chơi, điều khiển nhân vật và hiệu ứng đồ họa bắt mắt", "universe": "gameDev" },
+        { "text": "Dựng Fullstack Web App, thiết kế API và deploy hệ thống lên đám mây", "universe": "webDev" },
+        { "text": "Kiểm thử bảo mật, bảo vệ API và tìm các lỗi tiềm ẩn trước khi giám khảo chấm", "universe": "cyberSec" },
+        { "text": "Thiết kế Prototype Figma bóng bẩy, chuẩn bị bài thuyết trình trải nghiệm", "universe": "uiux" },
+        { "text": "Lên ý tưởng sản phẩm, phân công công việc và pitching thuyết phục ban giám khảo", "universe": "product" }
       ]
     },
     {
-      "id": 4,
-      "text": "Nếu được tham gia một workshop ngay hôm nay, bạn chọn chủ đề nào?",
+      "id": 104,
+      "track": "itGeneral",
+      "text": "Khi đối mặt với một vấn đề kỹ thuật khó, phong cách của bạn là gì?",
       "answers": [
-        {
-          "text": "SEO, Analytics và Digital Marketing",
-          "universe": "growth"
-        },
-        {
-          "text": "Figma, UI/UX và hành vi người dùng",
-          "universe": "experience"
-        },
-        {
-          "text": "BA, Product, Agile/Scrum và DevOps",
-          "universe": "product"
-        },
-        {
-          "text": "Testing, QA và Automation",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "AI Coding, Chatbot và AI Workflow",
-          "universe": "aiFuture"
-        }
+        { "text": "Tìm cách áp dụng Machine Learning hoặc AI để giải quyết bài toán phức tạp", "universe": "aiFuture" },
+        { "text": "Tư duy theo hướng thuật toán không gian, tối ưu FPS và trải nghiệm tương tác", "universe": "gameDev" },
+        { "text": "Tra cứu tài liệu kiến trúc hệ thống, chia nhỏ component và tối ưu hóa code", "universe": "webDev" },
+        { "text": "Phân tích log, soi từng gói tin mạng và tìm kẽ hở logic trong hệ thống", "universe": "cyberSec" },
+        { "text": "Tìm giải pháp đơn giản hóa giao diện để người dùng không gặp rắc rối", "universe": "uiux" },
+        { "text": "Đánh giá chi phí - lợi ích và chọn giải pháp khả thi nhất cho tiến độ dự án", "universe": "product" }
       ]
     },
     {
-      "id": 5,
-      "text": "Bạn thấy vui nhất khi...",
+      "id": 105,
+      "track": "itGeneral",
+      "text": "Bạn cảm thấy hào hứng và thỏa mãn nhất khi đạt được điều gì?",
       "answers": [
-        {
-          "text": "Một chiến dịch làm lượng truy cập tăng rõ rệt",
-          "universe": "growth"
-        },
-        {
-          "text": "Người dùng nói sản phẩm rất dễ sử dụng",
-          "universe": "experience"
-        },
-        {
-          "text": "Cả team phối hợp tốt và ra đúng sản phẩm cần thiết",
-          "universe": "product"
-        },
-        {
-          "text": "Bạn tìm ra một lỗi khó trước khi khách hàng gặp phải",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "Bạn biến một việc mất hàng giờ thành vài phút nhờ AI",
-          "universe": "aiFuture"
-        }
+        { "text": "Một mô hình AI dự đoán chính xác hoặc tự động hóa công việc mất hàng giờ", "universe": "aiFuture" },
+        { "text": "Bạn bè trải nghiệm tựa game do bạn làm và khen chơi cực kỳ cuốn hút", "universe": "gameDev" },
+        { "text": "Trang web/hệ thống do bạn xây dựng vận hành ổn định phục vụ ngàn người dùng", "universe": "webDev" },
+        { "text": "Phát hiện và vá thành công một lỗ hổng bảo mật nghiêm trọng trước kẻ xấu", "universe": "cyberSec" },
+        { "text": "Nhận được lời khen về giao diện trực quan, đẹp mắt và tiện dụng tuyệt đối", "universe": "uiux" },
+        { "text": "Toàn đội ngũ phối hợp nhịp nhàng và ra mắt sản phẩm đúng hạn thành công", "universe": "product" }
       ]
     },
     {
-      "id": 6,
-      "text": "Trong một bài tập nhóm, bạn thường có xu hướng...",
+      "id": 106,
+      "track": "itGeneral",
+      "text": "Từ khóa công nghệ nào khiến bạn muốn tìm tòi nghiên cứu ngay lập tức?",
       "answers": [
-        {
-          "text": "Nghĩ cách giới thiệu sản phẩm để nhiều người biết",
-          "universe": "growth"
-        },
-        {
-          "text": "Quan tâm cách trình bày và trải nghiệm",
-          "universe": "experience"
-        },
-        {
-          "text": "Kết nối mọi người, chia việc và theo dõi tiến độ",
-          "universe": "product"
-        },
-        {
-          "text": "Soi kỹ từng trường hợp và kiểm tra trước khi nộp",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "Thử công cụ mới để tăng tốc cả nhóm",
-          "universe": "aiFuture"
-        }
+        { "text": "Deep Learning, Neural Networks, Large Language Models (LLM), AI Agents", "universe": "aiFuture" },
+        { "text": "Unity, Unreal Engine 5, 3D Shaders, Ray Tracing, Physics Simulation", "universe": "gameDev" },
+        { "text": "React/Next.js, Microservices, Cloud Serverless, Docker, High-Concurrency", "universe": "webDev" },
+        { "text": "Ethical Hacking, Zero-day, Cryptography, Kali Linux, Threat Hunting", "universe": "cyberSec" },
+        { "text": "Design System, Micro-interactions, User Empathy, Typography, Motion UI", "universe": "uiux" },
+        { "text": "Product Discovery, Growth Metrics, Scrum Master, Business Modeling", "universe": "product" }
       ]
     },
     {
-      "id": 7,
-      "text": "Câu hỏi nào giống bạn nhất?",
+      "id": 107,
+      "track": "itGeneral",
+      "text": "Mục tiêu lớn nhất của bạn trong 2-3 năm tới là trở thành ai?",
       "answers": [
-        {
-          "text": "Làm sao để nhiều người tìm thấy sản phẩm hơn?",
-          "universe": "growth"
-        },
-        {
-          "text": "Làm sao để người dùng thấy sản phẩm dễ dùng hơn?",
-          "universe": "experience"
-        },
-        {
-          "text": "Chúng ta thực sự nên xây tính năng nào trước?",
-          "universe": "product"
-        },
-        {
-          "text": "Nếu người dùng làm khác dự kiến thì chuyện gì xảy ra?",
-          "universe": "bugHunter"
-        },
-        {
-          "text": "AI có thể giúp mình giải bài toán này theo cách nào?",
-          "universe": "aiFuture"
-        }
+        { "text": "Kỹ sư AI tài năng tiên phong xây dựng những giải pháp trí tuệ nhân tạo đột phá", "universe": "aiFuture" },
+        { "text": "Game Developer sáng tạo nên những tựa game đỉnh cao gây sốt cộng đồng", "universe": "gameDev" },
+        { "text": "Senior Fullstack / Cloud Architect làm chủ những hệ thống công nghệ quy mô", "universe": "webDev" },
+        { "text": "Chuyên gia an ninh mạng bảo vệ các hệ sinh thái số an toàn trước tội phạm mạng", "universe": "cyberSec" },
+        { "text": "Lead Product Designer kiến tạo nên những trải nghiệm số chạm tới cảm xúc", "universe": "uiux" },
+        { "text": "Product Lead / CTO lãnh đạo các dự án công nghệ mang lại giá trị lớn", "universe": "product" }
+      ]
+    },
+    {
+      "id": 201,
+      "track": "gameDev",
+      "text": "Khi bắt đầu một dự án Game mới, phần việc nào làm tim bạn đập nhanh vì thích thú?",
+      "answers": [
+        { "text": "Lập trình cơ chế di chuyển, hệ thống combo đánh nhau và nhảy nhót mượt mà", "universe": "gameplay" },
+        { "text": "Dựng hình nhân vật 3D, thiết kế giáp trụ và hiệu ứng kỹ năng phép thuật rực rỡ", "universe": "gameArtist" },
+        { "text": "Viết cốt truyện thế giới, thiết kế bản đồ mê cung và luật chơi độc đáo", "universe": "gameDesigner" },
+        { "text": "Viết hệ thống render đồ họa, tối ưu hóa bộ nhớ và đẩy tốc độ game lên 120 FPS", "universe": "engineDev" },
+        { "text": "Thử nghiệm các pha hành động nghẹt thở để tìm lỗi kẹt góc và cân bằng sức mạnh", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 202,
+      "track": "gameDev",
+      "text": "Người chơi phàn nàn rằng con Boss ở màn 3 quá khó đánh và gây ức chế. Bạn xử lý thế nào?",
+      "answers": [
+        { "text": "Chỉnh lại hành vi AI của Boss, thêm cửa sổ né đòn (iframe) hợp lý cho nhân vật", "universe": "gameplay" },
+        { "text": "Thêm hiệu ứng ánh sáng cảnh báo trước khi Boss tung chiêu để người chơi kịp nhận biết", "universe": "gameArtist" },
+        { "text": "Thiết kế lại nhịp điệu trận đấu (Pacing) và thưởng thêm vũ khí phụ trợ trước phòng Boss", "universe": "gameDesigner" },
+        { "text": "Kiểm tra xem đòn đánh của Boss có bị drop frame hay delay phản hồi input không", "universe": "engineDev" },
+        { "text": "Trực tiếp chơi thử 50 lần liên tục ở các cấp độ trang bị khác nhau để đo thông số", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 203,
+      "track": "gameDev",
+      "text": "Công cụ hoặc ngôn ngữ lập trình nào khiến bạn say mê nhất?",
+      "answers": [
+        { "text": "C# trong Unity hoặc C++ trong Unreal Engine để làm logic game", "universe": "gameplay" },
+        { "text": "Blender, Maya, ZBrush và Shader Graph để tạo visual đỉnh cao", "universe": "gameArtist" },
+        { "text": "Bảng tính Excel cân bằng chỉ số (Math/Stats), Miro và bản thảo Game Design (GDD)", "universe": "gameDesigner" },
+        { "text": "C++, Vulkan, DirectX, OpenGL và công cụ profiling hiệu năng GPU/CPU", "universe": "engineDev" },
+        { "text": "Bộ công cụ tự động hóa test, cheat engine để kiểm tra biên và Jira quản lý bug", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 204,
+      "track": "gameDev",
+      "text": "Trong một Game nhiều người chơi (Multiplayer), bạn quan tâm nhất đến khía cạnh nào?",
+      "answers": [
+        { "text": "Độ chuẩn xác khi va chạm đòn đánh và phản hồi điều khiển tức thì không có độ trễ", "universe": "gameplay" },
+        { "text": "Bộ skin trang phục độc đáo và hiệu ứng chiến trường bắt mắt", "universe": "gameArtist" },
+        { "text": "Hệ thống xếp hạng leo rank công bằng và động lực giữ chân người chơi lâu dài", "universe": "gameDesigner" },
+        { "text": "Cơ chế đồng bộ mạng (Netcode / Rollback), xử lý lag và server tick rate cao", "universe": "engineDev" },
+        { "text": "Phát hiện ngay các lỗ hổng gian lận (Hack/Speed/Wallhack) và lỗi đúp vật phẩm", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 205,
+      "track": "gameDev",
+      "text": "Bạn nhìn thấy một nhân vật rơi xuyên qua mặt đất trong game. Suy nghĩ đầu tiên của bạn là gì?",
+      "answers": [
+        { "text": "Collider kiểm tra va chạm của nhân vật bị lỗi tốc độ khi rơi quá nhanh", "universe": "gameplay" },
+        { "text": "Lưới đa giác (Mesh) của địa hình ở khu vực này bị hở hoặc lộn mặt Normals", "universe": "gameArtist" },
+        { "text": "Khu vực này người chơi có thể lợi dụng để bỏ qua cả một màn chơi (Sequence Break)", "universe": "gameDesigner" },
+        { "text": "Hệ thống PhysX/Raycast nội bộ bị tràn bộ nhớ hoặc lỗi Spatial Partitioning", "universe": "engineDev" },
+        { "text": "Phải ghi lại chính xác tọa độ X,Y,Z và các bước để tái hiện lại lỗi này cho team fix ngay", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 206,
+      "track": "gameDev",
+      "text": "Bạn muốn tự tay tạo ra kiệt tác game thuộc thể loại nào nhất?",
+      "answers": [
+        { "text": "Game hành động nhập vai (Action RPG / Hack & Slash) với cảm giác chặt chém đã tay", "universe": "gameplay" },
+        { "text": "Game phiêu lưu nghệ thuật thế giới mở đồ họa tuyệt mỹ (như Genshin, Elden Ring, Journey)", "universe": "gameArtist" },
+        { "text": "Game giải đố chiến thuật hoặc mô phỏng xây dựng có chiều sâu (như Civilization, Portal)", "universe": "gameDesigner" },
+        { "text": "Game AAA siêu thực với đồ họa Next-Gen, vật lý phá hủy và công nghệ đỉnh cao", "universe": "engineDev" },
+        { "text": "Game eSports đối kháng đòi hỏi sự cân bằng tuyệt đối và trải nghiệm không tì vết", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 207,
+      "track": "gameDev",
+      "text": "Điều gì tạo nên một tựa game huyền thoại trong mắt bạn?",
+      "answers": [
+        { "text": "Gameplay gây nghiện, phản hồi tay cầm đã đời và cơ chế độc nhất vô nhị", "universe": "gameplay" },
+        { "text": "Đồ họa lay động tâm hồn, phong cách mỹ thuật độc bản và hiệu ứng choáng ngợp", "universe": "gameArtist" },
+        { "text": "Cốt truyện sâu sắc, màn chơi thiết kế thông minh và thế giới giàu cảm xúc", "universe": "gameDesigner" },
+        { "text": "Công nghệ engine đột phá mở đường cho cả ngành công nghiệp phát triển", "universe": "engineDev" },
+        { "text": "Sự mượt mà hoàn hảo, không bug, mang lại sự thỏa mãn tối đa cho game thủ", "universe": "gameQA" }
+      ]
+    },
+    {
+      "id": 301,
+      "track": "aiFuture",
+      "text": "Bạn muốn xây dựng ứng dụng AI nào để thay đổi cuộc sống hàng ngày?",
+      "answers": [
+        { "text": "AI Assistant tự động thực hiện mọi tác vụ máy tính (gọi xe, đặt phòng, tóm tắt email)", "universe": "llmPrompt" },
+        { "text": "Mô hình học sâu dự báo chính xác xu hướng y tế, chẩn đoán bệnh từ sớm", "universe": "mlEngineer" },
+        { "text": "Hệ thống phân tích hàng triệu giao dịch tài chính để tìm cơ hội đầu tư sinh lời", "universe": "dataScientist" },
+        { "text": "Hệ thống camera thị giác thông minh cho xe tự hành và robot cứu hộ", "universe": "computerVision" },
+        { "text": "Hạ tầng đám mây cho phép hàng triệu người dùng truy vấn mô hình AI với độ trễ siêu nhỏ", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 302,
+      "track": "aiFuture",
+      "text": "Mô hình AI của bạn đưa ra câu trả lời không chính xác (Hallucination). Bạn giải quyết ra sao?",
+      "answers": [
+        { "text": "Thiết kế kỹ thuật RAG (Retrieval-Augmented Generation) kết nối nguồn dữ liệu chuẩn", "universe": "llmPrompt" },
+        { "text": "Tinh chỉnh lại trọng số mô hình (Fine-tuning) với tập dữ liệu chất lượng cao có gán nhãn", "universe": "mlEngineer" },
+        { "text": "Phân tích thống kê lại phân phối dữ liệu đầu vào xem có bị lệch (Data Bias) hay không", "universe": "dataScientist" },
+        { "text": "Tăng cường thêm dữ liệu hình ảnh/đa phương thức để mô hình đối chiếu chéo", "universe": "computerVision" },
+        { "text": "Thêm lớp kiểm duyệt an toàn (Guardrails) và theo dõi log phản hồi thời gian thực", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 303,
+      "track": "aiFuture",
+      "text": "Bộ công cụ nào bạn cảm thấy hứng thú khám phá nhất?",
+      "answers": [
+        { "text": "LangChain, LlamaIndex, OpenAI API, Vector DB (Chroma, Pinecone)", "universe": "llmPrompt" },
+        { "text": "PyTorch, TensorFlow, HuggingFace Transformers, JAX", "universe": "mlEngineer" },
+        { "text": "Python Pandas, Polars, SQL, BigQuery, Tableau, Scikit-learn", "universe": "dataScientist" },
+        { "text": "OpenCV, YOLOv10, Segment Anything (SAM), CUDA, ROS", "universe": "computerVision" },
+        { "text": "Docker, Kubernetes, MLflow, Triton Inference Server, AWS SageMaker", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 304,
+      "track": "aiFuture",
+      "text": "Thử thách lớn nhất trong AI mà bạn muốn chinh phục là gì?",
+      "answers": [
+        { "text": "Tạo ra một hệ sinh thái Multi-Agent tự phối hợp giải quyết các bài toán kinh doanh", "universe": "llmPrompt" },
+        { "text": "Tối ưu hóa kiến trúc mạng nơ-ron để giảm 90% dung lượng mà vẫn giữ độ chính xác", "universe": "mlEngineer" },
+        { "text": "Tìm ra insights giá trị hàng triệu đô từ đại dương dữ liệu phi cấu trúc khổng lồ", "universe": "dataScientist" },
+        { "text": "Giúp robot nhìn nhận và tương tác với môi trường 3D chân thực theo thời gian thực", "universe": "computerVision" },
+        { "text": "Vận hành hệ thống AI phục vụ 100,000 requests/giây với chi phí tối ưu nhất", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 305,
+      "track": "aiFuture",
+      "text": "Khi nhìn vào một bức ảnh hoặc video, bạn nghĩ AI có thể làm gì kỳ diệu nhất?",
+      "answers": [
+        { "text": "Viết một bài phân tích cảm xúc và câu chuyện văn học đầy chất thơ về bức ảnh", "universe": "llmPrompt" },
+        { "text": "Tự động sinh ra video chuyển động chân thực tiếp theo với công nghệ khuếch tán (Diffusion)", "universe": "mlEngineer" },
+        { "text": "Trích xuất mọi dữ liệu nhân khẩu học và số liệu thống kê hữu ích từ hình ảnh", "universe": "dataScientist" },
+        { "text": "Phân đoạn chính xác từng pixel đối tượng, nhận diện cử chỉ tay và chiều sâu 3D", "universe": "computerVision" },
+        { "text": "Truyền phát luồng video phân tích AI trực tiếp từ camera bay không người lái", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 306,
+      "track": "aiFuture",
+      "text": "Bạn tự hào nhất khi dự án AI của mình đạt được điều gì?",
+      "answers": [
+        { "text": "Agent tự động làm việc thông minh khiến người dùng phải thốt lên 'Kỳ diệu thật!'", "universe": "llmPrompt" },
+        { "text": "Độ chính xác (Accuracy / F1-score) của model đạt ngưỡng kỷ lục mới", "universe": "mlEngineer" },
+        { "text": "Dữ liệu trực quan hóa rõ ràng giúp ban lãnh đạo ra quyết định chiến lược đúng đắn", "universe": "dataScientist" },
+        { "text": "Camera nhận diện chuẩn xác ngay cả trong điều kiện trời tối hoặc góc nghiêng khó", "universe": "computerVision" },
+        { "text": "Hệ thống vận hành trơn tru 24/7, tự động cập nhật model mới mà không gián đoạn dịch vụ", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 307,
+      "track": "aiFuture",
+      "text": "Tương lai của Trí Tuệ Nhân Tạo trong hình dung của bạn là gì?",
+      "answers": [
+        { "text": "Trợ lý trí tuệ nhân tạo cá nhân hóa cho từng con người, thấu hiểu mọi nhu cầu", "universe": "llmPrompt" },
+        { "text": "Trí tuệ nhân tạo tổng quát (AGI) có khả năng tự tư duy và sáng tạo khoa học", "universe": "mlEngineer" },
+        { "text": "Dữ liệu toàn cầu được kết nối và khai thác để giải quyết biến đổi khí hậu và kinh tế", "universe": "dataScientist" },
+        { "text": "Robot hình người và xe tự hành phổ biến ở mọi nẻo đường đô thị", "universe": "computerVision" },
+        { "text": "AI trở thành tiện ích hạ tầng phổ thông như điện và nước, sẵn sàng ở mọi nơi", "universe": "mlOps" }
+      ]
+    },
+    {
+      "id": 401,
+      "track": "webDev",
+      "text": "Trang web mua sắm của công ty sắp diễn ra ngày Siêu Sale 11/11. Bạn ưu tiên chuẩn bị gì?",
+      "answers": [
+        { "text": "Tối ưu hóa giao diện đặt hàng nhanh, hiệu ứng banner giảm giá bắt mắt mượt mà", "universe": "frontend" },
+        { "text": "Thiết kế cơ chế khóa hàng tồn kho, chống Race Condition khi ngàn người cùng bấm mua", "universe": "backend" },
+        { "text": "Cấu hình Auto-scaling mở rộng server đám mây và thiết lập CDN tải tĩnh", "universe": "devops" },
+        { "text": "Rà soát toàn bộ luồng từ giao diện giỏ hàng đến cổng thanh toán ngân hàng", "universe": "fullstack" },
+        { "text": "Tối ưu hóa các bước thanh toán (Checkout flow) để giảm tỷ lệ khách bỏ rơi giỏ hàng", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 402,
+      "track": "webDev",
+      "text": "Bạn cảm thấy hào hứng với công nghệ web nào nhất?",
+      "answers": [
+        { "text": "Next.js 15, React Server Components, Tailwind CSS, WebGL 3D Animation", "universe": "frontend" },
+        { "text": "Go (Golang), Node.js Fastify, PostgreSQL, Redis, Apache Kafka", "universe": "backend" },
+        { "text": "Kubernetes, Terraform, GitHub Actions, Docker, Grafana Observability", "universe": "devops" },
+        { "text": "T3 Stack, Supabase, TRPC, Serverless, Fullstack TypeScript", "universe": "fullstack" },
+        { "text": "Figma Auto-layout, Framer Motion, Design Tokens, Usability Testing", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 403,
+      "track": "webDev",
+      "text": "Website đột ngột bị chậm bất thường. Bạn kiểm tra khu vực nào đầu tiên?",
+      "answers": [
+        { "text": "Kiểm tra bundle JavaScript quá nặng hoặc render thừa lặp đi lặp lại ở client", "universe": "frontend" },
+        { "text": "Xem xét các câu lệnh SQL query chậm (Slow query) hoặc thiếu Index trong Database", "universe": "backend" },
+        { "text": "Kiểm tra mức độ sử dụng CPU/RAM máy chủ, tắc nghẽn băng thông mạng hoặc DDOS", "universe": "devops" },
+        { "text": "Dùng Chrome DevTools Network tab để đo thời gian phản hồi API và render layout", "universe": "fullstack" },
+        { "text": "Xem khách hàng bị kẹt ở bước nào qua Heatmap và báo cáo trải nghiệm", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 404,
+      "track": "webDev",
+      "text": "Khi bắt đầu một dự án Startup web mới từ con số 0, bạn muốn làm gì nhất?",
+      "answers": [
+        { "text": "Xây dựng hệ thống UI Component chuẩn chỉ, Responsive mọi kích thước màn hình", "universe": "frontend" },
+        { "text": "Thiết kế lược đồ cơ sở dữ liệu (Database Schema) và cấu trúc API REST/GraphQL", "universe": "backend" },
+        { "text": "Thiết lập quy trình CI/CD tự động test và deploy lên Cloud chỉ bằng 1 lệnh git push", "universe": "devops" },
+        { "text": "Xây dựng ngay bản MVP hoàn chỉnh từ A-Z để tung ra thị trường thử nghiệm", "universe": "fullstack" },
+        { "text": "Nghiên cứu thị trường, vẽ Persona khách hàng và thiết kế nguyên mẫu trực quan", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 405,
+      "track": "webDev",
+      "text": "Bạn ghét nhất điều gì khi lướt một trang web trên internet?",
+      "answers": [
+        { "text": "Giao diện bị giật lag, nhảy bố cục khi load ảnh (CLS) và nút bấm không phản hồi", "universe": "frontend" },
+        { "text": "Lỗi máy chủ 500 Internal Server Error hoặc dữ liệu không nhất quán", "universe": "backend" },
+        { "text": "Website thường xuyên bị sập 'Down for maintenance' và mất kết nối", "universe": "devops" },
+        { "text": "Các tính năng hoạt động nửa vời, giao diện một đằng logic một nẻo", "universe": "fullstack" },
+        { "text": "Bố cục rối rắm, quảng cáo che hết nội dung và form đăng ký quá phức tạp", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 406,
+      "track": "webDev",
+      "text": "Phong cách làm việc lý tưởng của bạn trong nhóm phát triển Web là gì?",
+      "answers": [
+        { "text": "Tập trung biến các bản vẽ thiết kế thành giao diện sống động và tinh tế từng pixel", "universe": "frontend" },
+        { "text": "Xây dựng logic nghiệp vụ vững chắc, bảo mật thông tin và viết tài liệu API rõ ràng", "universe": "backend" },
+        { "text": "Đảm bảo môi trường chạy ổn định, tự động hóa mọi khâu để team code thoải mái", "universe": "devops" },
+        { "text": "Linh hoạt di chuyển giữa các tầng công nghệ để giải quyết nhanh mọi nút thắt", "universe": "fullstack" },
+        { "text": "Đóng vai trò luật sư bảo vệ quyền lợi và sự tiện lợi tối đa cho người dùng cuối", "universe": "uiuxWeb" }
+      ]
+    },
+    {
+      "id": 407,
+      "track": "webDev",
+      "text": "Mục tiêu định danh sự nghiệp web của bạn là gì?",
+      "answers": [
+        { "text": "Frontend Master tạo ra những trải nghiệm web tầm cỡ thế giới", "universe": "frontend" },
+        { "text": "Principal Backend Architect kiến tạo những hệ thống phân tán siêu mạnh", "universe": "backend" },
+        { "text": "Cloud / DevOps Lead vận hành hạ tầng đám mây triệu đô vững như bàn thạch", "universe": "devops" },
+        { "text": "Fullstack Tech Founder tự tay xây dựng những sản phẩm công nghệ kỳ lân", "universe": "fullstack" },
+        { "text": "Head of UX/Design định hình tiêu chuẩn trải nghiệm số cho hàng triệu người", "universe": "uiuxWeb" }
       ]
     }
   ]

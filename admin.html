@@ -1,16 +1,21 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Web Multiverse — Live Admin Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tech & Game & AI Multiverse — Live Admin Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
+  <div class="bg-glow"></div>
   <main class="admin">
     <header>
       <div>
-        <div class="badge">LIVE DASHBOARD</div>
-        <h1>WEB MULTIVERSE</h1>
+        <div class="badge">✦ LIVE DASHBOARD ✦</div>
+        <h1>TECH CAREER MULTIVERSE</h1>
         <div class="status-pill" id="statusBadge">
           <span class="status-dot" id="statusDot"></span>
           <span id="statusText">Đang kết nối máy chủ...</span>
@@ -21,6 +26,7 @@
         <button class="secondary" onclick="seedDemoData()">🎲 Thêm dữ liệu mẫu</button>
         <button class="secondary btn-danger" onclick="resetAllData()">🗑️ Xóa kết quả</button>
         <button class="secondary" onclick="loadDashboard()">↻ Làm mới</button>
+        <a href="index.html" class="secondary" style="text-decoration:none;display:inline-flex;align-items:center;">🎮 Vào trang chơi</a>
       </div>
     </header>
 
@@ -29,7 +35,7 @@
       <div id="qrCodePreview" class="qr-container"></div>
       <div class="qr-info">
         <h3>📲 Quét mã để vào màn hình người chơi</h3>
-        <p>Sinh viên quét mã này bằng camera điện thoại để bắt đầu bài trắc nghiệm 7 câu hỏi.</p>
+        <p>Sinh viên quét mã này bằng camera điện thoại để chọn chuyên ngành (Game, AI, Web, Đa vũ trụ) và làm bài trắc nghiệm 7 câu hỏi.</p>
         <div>
           <span class="qr-url-badge" id="playerUrlDisplay">Đang tải link...</span>
         </div>
@@ -41,16 +47,41 @@
       </div>
     </section>
 
+    <!-- Track Filter Bar -->
+    <section class="filter-section">
+      <div class="filter-title">🔍 Lọc theo chuyên ngành:</div>
+      <div class="filter-pills" id="trackFilterPills">
+        <button type="button" class="filter-pill active" data-filter="all">🌟 Tất cả chuyên ngành</button>
+        <button type="button" class="filter-pill" data-filter="gameDev">🎮 Chuyên ngành Game</button>
+        <button type="button" class="filter-pill" data-filter="aiFuture">🤖 Chuyên ngành AI & Data</button>
+        <button type="button" class="filter-pill" data-filter="webDev">🌐 Chuyên ngành Web & Cloud</button>
+        <button type="button" class="filter-pill" data-filter="itGeneral">🔮 Đa vũ trụ CNTT</button>
+      </div>
+    </section>
+
     <!-- Metrics -->
     <section class="stats">
-      <div class="metric"><span>Tổng số người tham gia</span><strong id="total">0</strong></div>
-      <div class="metric"><span>Vũ trụ nổi trội nhất</span><strong id="leader">—</strong></div>
+      <div class="metric">
+        <span>Tổng số sinh viên tham gia</span>
+        <strong id="total">0</strong>
+      </div>
+      <div class="metric">
+        <span>Chuyên ngành hot nhất</span>
+        <strong id="topTrack">—</strong>
+      </div>
+      <div class="metric">
+        <span>Vũ trụ nghề nghiệp dẫn đầu</span>
+        <strong id="leader">—</strong>
+      </div>
     </section>
 
     <!-- Distribution & Participants Grid -->
     <section class="admin-grid">
       <div class="panel">
-        <h2>Phân bố Vũ trụ nghề nghiệp</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <h2 style="margin:0;">Phân bố Vũ trụ nghề nghiệp</h2>
+          <span id="distributionTrackName" class="badge">TẤT CẢ</span>
+        </div>
         <div id="bars"></div>
       </div>
       <div class="panel">
@@ -68,11 +99,11 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeQrModal()">&times;</button>
       <div class="badge">THAM GIA NGAY</div>
-      <h2 style="margin:12px 0 6px">Quét mã để chơi</h2>
-      <p style="margin:0 0 14px">Dùng camera điện thoại để quét mã bên dưới:</p>
+      <h2 style="margin:12px 0 6px">Quét mã để chọn chuyên ngành & khám phá</h2>
+      <p style="margin:0 0 14px;color:var(--muted)">Dùng camera điện thoại để quét mã bên dưới:</p>
       <div id="bigQrCode" class="big-qr"></div>
       <div class="qr-url-badge" id="modalUrlDisplay" style="font-size:14px;margin-bottom:12px"></div>
-      <p class="tiny" style="color:var(--muted)">Đảm bảo điện thoại kết nối chung mạng Wi-Fi hoặc mở 4G</p>
+      <p class="tiny" style="color:var(--muted)">Hỗ trợ Game Dev, Lập trình AI, Web Dev và Đa vũ trụ CNTT</p>
     </div>
   </div>
 

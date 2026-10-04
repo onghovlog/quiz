@@ -1,19 +1,55 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Kết quả Web Multiverse</title><link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kết Quả Khám Phá — Tech & Game & AI Multiverse</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="bg-glow"></div>
   <main class="shell">
     <section class="card result-card">
-      <div class="badge">KẾT QUẢ CỦA BẠN</div>
-      <div id="icon" class="result-icon">✦</div>
-      <p class="eyebrow">Vũ trụ nổi trội</p>
-      <h1 id="universe">...</h1>
-      <p id="description"></p>
-      <div id="scoreList" class="score-list"></div>
-      <button onclick="location.href='index.html'">Khám phá lại</button>
+      <div class="result-header">
+        <div class="badge" id="trackBadge">KẾT QUẢ ĐỊNH HƯỚNG</div>
+        <div class="user-greeting" id="userGreeting">Dành cho: <span>Bạn</span></div>
+      </div>
+
+      <div id="icon" class="result-icon">✨</div>
+      <p class="eyebrow">Vũ trụ nghề nghiệp nổi trội của bạn</p>
+      <h1 id="universe">Đang phân tích...</h1>
+      <p id="subtitle" class="result-sub"></p>
+      
+      <p id="description" class="result-desc"></p>
+
+      <!-- Key Skills Box -->
+      <div class="skills-box" id="skillsContainer">
+        <span class="skills-title">⚡ Kỹ năng & Công nghệ trọng tâm gợi ý:</span>
+        <div class="skills-pills" id="skillsList"></div>
+      </div>
+
+      <!-- Actionable Advice -->
+      <div class="advice-card" id="adviceContainer">
+        <div class="advice-icon">💡</div>
+        <div class="advice-content">
+          <strong>Lời khuyên định hướng:</strong>
+          <p id="adviceText"></p>
+        </div>
+      </div>
+
+      <!-- Score Breakdown -->
+      <div class="score-section">
+        <h3>📊 Mức độ phù hợp với các hướng đi:</h3>
+        <div id="scoreList" class="score-list"></div>
+      </div>
+
+      <div class="result-actions">
+        <button type="button" class="btn-primary" onclick="location.href='index.html'">🔄 Khám phá lại / Chọn chuyên ngành khác</button>
+        <button type="button" class="secondary" onclick="location.href='admin.html'">📊 Xem bảng xếp hạng toàn trường</button>
+      </div>
     </section>
   </main>
   <script src="js/result.js"></script>

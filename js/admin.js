@@ -6,14 +6,49 @@ function getApiUrl() {
 }
 
 const API = getApiUrl();
-const meta = {
-  growth: ["🌱", "Growth", "SEO & Marketing"],
-  experience: ["🎨", "Experience", "UI/UX & Frontend"],
-  product: ["🚀", "Product", "BA & Agile"],
-  bugHunter: ["🐞", "Bug Hunter", "QA & Testing"],
-  aiFuture: ["🤖", "AI Future", "AI & Workflow"]
+
+const trackInfo = {
+  itGeneral: { name: "Đa Vũ Trụ CNTT", icon: "🔮", color: "#b388ff" },
+  gameDev: { name: "Lập Trình Game", icon: "🎮", color: "#ff6b81" },
+  aiFuture: { name: "Lập Trình AI & Data", icon: "🤖", color: "#00d2d3" },
+  webDev: { name: "Lập Trình Web & Cloud", icon: "🌐", color: "#54a0ff" }
 };
 
+// Universe meta fallback
+const defaultUniversesMeta = {
+  itGeneral: {
+    aiFuture: { name: "AI Engineer", icon: "🤖" },
+    gameDev: { name: "Game Developer", icon: "🎮" },
+    webDev: { name: "Web & Cloud Architect", icon: "🌐" },
+    cyberSec: { name: "Cyber Security", icon: "🛡️" },
+    product: { name: "Product & Tech Lead", icon: "🚀" },
+    uiux: { name: "UI/UX Designer", icon: "🎨" }
+  },
+  gameDev: {
+    gameplay: { name: "Gameplay Programmer", icon: "🕹️" },
+    gameArtist: { name: "Game 3D Artist & VFX", icon: "🎨" },
+    gameDesigner: { name: "Game & Level Designer", icon: "📜" },
+    engineDev: { name: "Game Engine & Graphics", icon: "⚙️" },
+    gameQA: { name: "Game Tester & QA", icon: "🎯" }
+  },
+  aiFuture: {
+    llmPrompt: { name: "GenAI & Prompt Engineer", icon: "🧠" },
+    mlEngineer: { name: "Machine Learning Engineer", icon: "🔬" },
+    dataScientist: { name: "Data Scientist & Big Data", icon: "📊" },
+    computerVision: { name: "Computer Vision & Robot", icon: "👁️" },
+    mlOps: { name: "MLOps & Cloud AI", icon: "⚡" }
+  },
+  webDev: {
+    frontend: { name: "Frontend Master", icon: "🎨" },
+    backend: { name: "Backend & Systems", icon: "⚙️" },
+    devops: { name: "DevOps & Cloud", icon: "☁️" },
+    fullstack: { name: "Fullstack Ninja", icon: "⚡" },
+    uiuxWeb: { name: "Web UX Specialist", icon: "👁️" }
+  }
+};
+
+let activeFilter = "all";
+let universesMeta = defaultUniversesMeta;
 let previewQr = null;
 let modalQr = null;
 let currentPlayerUrl = "";
@@ -129,13 +164,35 @@ function updateConnectionStatus(isOnline, serverHost) {
   }
 }
 
+// Find universe info across tracks
+function getUniverseInfo(uKey, trackKey) {
+  if (trackKey && universesMeta[trackKey] && universesMeta[trackKey][uKey]) {
+    return universesMeta[trackKey][uKey];
+  }
+  for (const t of Object.keys(universesMeta)) {
+    if (universesMeta[t] && universesMeta[t][uKey]) {
+      return universesMeta[t][uKey];
+    }
+  }
+  return { name: uKey, icon: "✨" };
+}
+
 async function loadDashboard() {
   try {
     let results = [];
     let isConnected = false;
 
+    // Fetch tracks meta if available
     try {
-      const res = await fetch(`${API}/results?_sort=createdAt&_order=desc`);
+      const metaRes = await fetch(`${API}/tracks`);
+      if (metaRes.ok) {
+        const tData = await metaRes.json();
+        if (tData.universesMeta) universesMeta = tData.universesMeta;
+      }
+    } catch (err) {}
+
+    try {
+      const res = await fetch(`${API}/results`);
       if (res.ok) {
         results = await res.json();
         isConnected = true;
@@ -149,6 +206,7 @@ async function loadDashboard() {
         if (staticRes.ok) {
           const db = await staticRes.json();
           results = db.results || [];
+          if (db.universesMeta) universesMeta = db.universesMeta;
           isConnected = true;
         }
       } catch (err2) {
@@ -160,64 +218,103 @@ async function loadDashboard() {
 
     if (!Array.isArray(results)) results = [];
 
-    // Update total count
-    document.getElementById("total").textContent = results.length;
+    // Filter results based on activeFilter
+    const filteredResults = activeFilter === "all"
+      ? results
+      : results.filter(r => (r.track || "itGeneral") === activeFilter);
 
-    // Calculate universe counts
-    const count = Object.fromEntries(Object.keys(meta).map((k) => [k, 0]));
-    results.forEach((r) => {
+    // Update total count
+    document.getElementById("total").textContent = filteredResults.length;
+
+    // Calculate Top Track overall
+    const trackCounts = {};
+    results.forEach(r => {
+      const t = r.track || "itGeneral";
+      trackCounts[t] = (trackCounts[t] || 0) + 1;
+    });
+    const sortedTracks = Object.entries(trackCounts).sort((a, b) => b[1] - a[1]);
+    const topTrackKey = sortedTracks.length > 0 ? sortedTracks[0][0] : null;
+    const topTrackInfo = topTrackKey && trackInfo[topTrackKey] ? trackInfo[topTrackKey] : null;
+    document.getElementById("topTrack").textContent = topTrackInfo
+      ? `${topTrackInfo.icon} ${topTrackInfo.name}`
+      : "—";
+
+    // Track name badge on distribution panel
+    const distBadge = document.getElementById("distributionTrackName");
+    if (distBadge) {
+      distBadge.textContent = activeFilter === "all"
+        ? "TẤT CẢ CHUYÊN NGÀNH"
+        : (trackInfo[activeFilter]?.name?.toUpperCase() || activeFilter.toUpperCase());
+    }
+
+    // Calculate universe counts for filtered set
+    const count = {};
+    filteredResults.forEach((r) => {
       const u = r.primaryUniverse;
-      if (u && count[u] !== undefined) {
+      if (u) {
         count[u] = (count[u] || 0) + 1;
       }
     });
 
-    // Find leader
-    const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
-    const leaderKey = sorted[0][0];
-    const leaderCount = sorted[0][1];
-    
-    document.getElementById("leader").textContent = (results.length > 0 && leaderCount > 0)
-      ? `${meta[leaderKey][0]} ${meta[leaderKey][1]}`
-      : "—";
+    // Find dominant universe
+    const sortedUniverses = Object.entries(count).sort((a, b) => b[1] - a[1]);
+    if (sortedUniverses.length > 0 && sortedUniverses[0][1] > 0) {
+      const uKey = sortedUniverses[0][0];
+      const uInfo = getUniverseInfo(uKey, activeFilter);
+      document.getElementById("leader").textContent = `${uInfo.icon} ${uInfo.name}`;
+    } else {
+      document.getElementById("leader").textContent = "—";
+    }
 
     // Render bars
-    document.getElementById("bars").innerHTML = sorted
-      .map(([k, v]) => {
-        const pct = results.length ? Math.round((v / results.length) * 100) : 0;
-        return `<div class="dash-row">
-          <div class="dash-head">
-            <span>${meta[k][0]} ${meta[k][1]}</span>
-            <b>${v} SV · ${pct}%</b>
-          </div>
-          <div class="dash-bar"><i style="width:${pct}%"></i></div>
-        </div>`;
-      })
-      .join("");
+    const barsContainer = document.getElementById("bars");
+    if (sortedUniverses.length === 0) {
+      barsContainer.innerHTML = `<p style="color:var(--muted);text-align:center;padding:20px 0;">Chưa có dữ liệu phân bố.</p>`;
+    } else {
+      barsContainer.innerHTML = sortedUniverses
+        .map(([k, v]) => {
+          const uInfo = getUniverseInfo(k, activeFilter);
+          const pct = filteredResults.length ? Math.round((v / filteredResults.length) * 100) : 0;
+          return `<div class="dash-row">
+            <div class="dash-head">
+              <span>${uInfo.icon} ${uInfo.name}</span>
+              <b>${v} SV · ${pct}%</b>
+            </div>
+            <div class="dash-bar"><i style="width:${pct}%"></i></div>
+          </div>`;
+        })
+        .join("");
+    }
 
     // Render recent participant list
-    if (results.length === 0) {
-      document.getElementById("recent").innerHTML = `
+    const recentEl = document.getElementById("recent");
+    if (filteredResults.length === 0) {
+      recentEl.innerHTML = `
         <div style="text-align:center;padding:30px 10px;color:var(--muted)">
           <div style="font-size:32px;margin-bottom:8px">👥</div>
-          <p style="margin:0">Chưa có người tham gia.</p>
+          <p style="margin:0">Chưa có người tham gia trong mục này.</p>
           <p style="font-size:12px;margin-top:6px">Hãy quét mã QR hoặc bấm <b>"Thêm dữ liệu mẫu"</b> để trải nghiệm.</p>
         </div>
       `;
     } else {
-      document.getElementById("recent").innerHTML = results
+      recentEl.innerHTML = filteredResults
         .slice(0, 100)
         .map((r) => {
-          const uInfo = meta[r.primaryUniverse] || ["✨", "Khám phá"];
+          const tKey = r.track || "itGeneral";
+          const t = trackInfo[tKey] || { name: tKey, icon: "✨" };
+          const uInfo = getUniverseInfo(r.primaryUniverse, tKey);
           const time = timeAgo(r.createdAt);
           return `
             <div class="person-row">
-              <div class="person-avatar">${uInfo[0]}</div>
+              <div class="person-avatar">${uInfo.icon || t.icon}</div>
               <div class="person-main">
-                <span class="person-name">${escapeHtml(r.playerName || "Sinh viên")}</span>
+                <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                  <span class="person-name">${escapeHtml(r.playerName || "Sinh viên")}</span>
+                  <span class="track-tag">${t.icon} ${t.name}</span>
+                </div>
                 <span class="person-time">${time}</span>
               </div>
-              <div class="person-tag">${uInfo[0]} ${uInfo[1]}</div>
+              <div class="person-tag">${uInfo.icon} ${uInfo.name}</div>
             </div>
           `;
         })
@@ -229,12 +326,23 @@ async function loadDashboard() {
   }
 }
 
+// Setup filter button listeners
+const filterPills = document.querySelectorAll(".filter-pill");
+filterPills.forEach(pill => {
+  pill.addEventListener("click", () => {
+    filterPills.forEach(p => p.classList.remove("active"));
+    pill.classList.add("active");
+    activeFilter = pill.getAttribute("data-filter") || "all";
+    loadDashboard();
+  });
+});
+
 async function seedDemoData() {
   try {
     const res = await fetch(`${API}/seed`, { method: "POST" });
     if (res.ok) {
       await loadDashboard();
-      alert("Đã thêm 5 người chơi mẫu thành công!");
+      alert("Đã thêm 10 sinh viên mẫu đa dạng các chuyên ngành Game, AI, Web, Đa vũ trụ thành công!");
     } else {
       throw new Error("Không thể gọi API seed");
     }
@@ -259,7 +367,7 @@ async function resetAllData() {
 }
 
 function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (m) => ({
+  return String(s || "").replace(/[&<>"']/g, (m) => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",

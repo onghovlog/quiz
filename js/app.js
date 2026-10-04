@@ -7,21 +7,36 @@ function getApiUrl() {
 
 const API = getApiUrl();
 
+// Highlight selected track card
+const trackCards = document.querySelectorAll(".track-card");
+trackCards.forEach(card => {
+  card.addEventListener("click", () => {
+    trackCards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    const radio = card.querySelector("input[type='radio']");
+    if (radio) radio.checked = true;
+  });
+});
+
 document.getElementById("joinForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const nameInput = document.getElementById("name");
   const name = nameInput ? nameInput.value.trim() : "";
   if (!name) return;
 
+  const selectedTrackEl = document.querySelector("input[name='track']:checked");
+  const track = selectedTrackEl ? selectedTrackEl.value : "itGeneral";
+
   const submitBtn = e.target.querySelector("button[type='submit']");
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = "Đang vào game...";
+    submitBtn.textContent = "Đang khởi tạo vũ trụ...";
   }
 
   let player = {
     id: Date.now(),
     name: name,
+    track: track,
     joinedAt: new Date().toISOString()
   };
 
@@ -29,7 +44,7 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
     const res = await fetch(`${API}/players`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, joinedAt: player.joinedAt })
+      body: JSON.stringify({ name, track, joinedAt: player.joinedAt })
     });
     if (res.ok) {
       player = await res.json();
@@ -49,7 +64,6 @@ function openShareQrModal() {
   const display = document.getElementById("shareUrlDisplay");
   const container = document.getElementById("shareQrCode");
   
-  // Clean URL to index.html
   const currentUrl = `${window.location.origin}/index.html`;
 
   if (display) display.textContent = currentUrl;
