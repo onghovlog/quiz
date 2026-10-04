@@ -12,19 +12,19 @@ if (!player) {
 }
 
 const trackNames = {
-  itGeneral: "🔮 Đa Vũ Trụ CNTT",
-  gameDev: "🎮 Chuyên Ngành Game",
-  aiFuture: "🤖 Chuyên Ngành AI & Data",
-  webDev: "🌐 Chuyên Ngành Web & Cloud"
+  itGeneral: "Đa Vũ Trụ CNTT",
+  gameDev: "Chuyên Ngành Game",
+  aiFuture: "Chuyên Ngành AI & Data",
+  webDev: "Chuyên Ngành Web & Cloud"
 };
 
-const currentTrack = player.track || "itGeneral";
+const currentTrack = player.track || "gameDev";
 
 // Set Header Info
 const nameEl = document.getElementById("playerNameDisplay");
 const trackBadgeEl = document.getElementById("trackBadge");
-if (nameEl) nameEl.textContent = player.name || "Khám phá viên";
-if (trackBadgeEl) trackBadgeEl.textContent = trackNames[currentTrack] || "CHUYÊN NGÀNH";
+if (nameEl) nameEl.textContent = player.name || "Thí sinh";
+if (trackBadgeEl) trackBadgeEl.textContent = (trackNames[currentTrack] || "CHUYÊN NGÀNH").toUpperCase();
 
 let questions = [];
 let current = 0;
@@ -121,7 +121,7 @@ async function choose(u) {
   let result = {
     id: Date.now(),
     playerId: player ? player.id : Date.now(),
-    playerName: player ? player.name : "Người chơi",
+    playerName: player ? player.name : "Thí sinh",
     track: currentTrack,
     scores: scores,
     primaryUniverse: primary,

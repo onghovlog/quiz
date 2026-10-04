@@ -10,25 +10,21 @@ const API = getApiUrl();
 const trackInfo = {
   gameDev: {
     name: "Lập Trình Game",
-    icon: "🎮",
     tagline: "Gameplay, 3D Art, Game Design, Engine, QA Tester",
     badge: "CHUYÊN NGÀNH GAME"
   },
   aiFuture: {
     name: "Lập Trình AI & Data",
-    icon: "🤖",
     tagline: "GenAI, Machine Learning, Computer Vision, MLOps",
     badge: "CHUYÊN NGÀNH AI"
   },
   webDev: {
     name: "Lập Trình Web & Cloud",
-    icon: "🌐",
     tagline: "Frontend, Backend API, Cloud, DevOps, UI/UX",
     badge: "CHUYÊN NGÀNH WEB"
   },
   itGeneral: {
     name: "Đa Vũ Trụ CNTT",
-    icon: "🔮",
     tagline: "Khám phá tổng hợp: AI, Game, Web, CyberSec, Product",
     badge: "TỔNG HỢP CNTT"
   }
@@ -64,11 +60,9 @@ async function loadActiveTrack() {
 
 function renderActiveTrackBanner() {
   const info = trackInfo[activeTrack] || trackInfo.gameDev;
-  const iconEl = document.getElementById("bannerIcon");
   const titleEl = document.getElementById("bannerTitle");
   const descEl = document.getElementById("bannerDesc");
 
-  if (iconEl) iconEl.textContent = info.icon;
   if (titleEl) titleEl.textContent = info.name;
   if (descEl) descEl.textContent = info.tagline;
 }
@@ -82,7 +76,7 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const submitBtn = e.target.querySelector("button[type='submit']");
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = "Đang vào phòng thi...";
+    submitBtn.textContent = "Đang vào bài thi...";
   }
 
   let player = {
@@ -123,8 +117,8 @@ function openShareQrModal() {
     container.innerHTML = "";
     shareQr = new QRCode(container, {
       text: currentUrl,
-      width: 220,
-      height: 220,
+      width: 200,
+      height: 200,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H

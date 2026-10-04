@@ -4,32 +4,28 @@
   },
   "tracks": [
     {
-      "id": "itGeneral",
-      "name": "Đa Vũ Trụ CNTT",
-      "icon": "🔮",
-      "tagline": "Khám phá toàn diện: AI, Game, Web, An ninh mạng, Product",
-      "badge": "TỔNG HỢP CNTT"
-    },
-    {
       "id": "gameDev",
       "name": "Lập Trình Game",
-      "icon": "🎮",
-      "tagline": "Sáng tạo thế giới ảo: Gameplay, 3D Art, Game Design, Engine",
+      "tagline": "Sáng tạo thế giới ảo: Gameplay, 3D Art, Game Design, Engine, QA",
       "badge": "CHUYÊN NGÀNH GAME"
     },
     {
       "id": "aiFuture",
       "name": "Lập Trình AI & Data",
-      "icon": "🤖",
       "tagline": "Trí tuệ nhân tạo: GenAI, Machine Learning, Computer Vision, MLOps",
       "badge": "CHUYÊN NGÀNH AI"
     },
     {
       "id": "webDev",
       "name": "Lập Trình Web & Cloud",
-      "icon": "🌐",
       "tagline": "Ứng dụng số hiện đại: Frontend, Backend API, Cloud & DevOps",
       "badge": "CHUYÊN NGÀNH WEB"
+    },
+    {
+      "id": "itGeneral",
+      "name": "Đa Vũ Trụ CNTT",
+      "tagline": "Khám phá toàn diện: AI, Game, Web, An ninh mạng, Product",
+      "badge": "TỔNG HỢP CNTT"
     }
   ],
   "universesMeta": {

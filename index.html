@@ -3,29 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tech Multiverse — Khám Phá Nghề Nghiệp CNTT, Game & AI</title>
+  <title>Khám Phá Nghề Nghiệp CNTT, Game & AI</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="bg-glow"></div>
   <main class="shell">
     <section class="hero card">
-      <div class="badge">✦ TECH CAREER MULTIVERSE ✦</div>
-      <div class="orbit">🚀</div>
-      <h1>Khám phá <span>Vũ Trụ Nghề Nghiệp</span></h1>
-      <p class="hero-sub">7 câu hỏi trắc nghiệm tình huống. Khám phá ngay hướng đi nổi trội và tiềm năng công nghệ của bạn.</p>
+      <div class="badge">TECH CAREER QUIZ</div>
+      <h1>Khám phá <span>Nghề Nghiệp & Thế Mạnh</span></h1>
+      <p class="hero-sub">7 câu hỏi tình huống thực tế. Khám phá hướng đi và năng lực phù hợp với bạn trong lĩnh vực công nghệ.</p>
       
-      <!-- Banner Chủ Đề Do Admin Chỉ Định -->
+      <!-- Banner Chủ Đề Do Admin Cài Đặt -->
       <div class="active-track-banner" id="activeTrackBanner">
         <div class="banner-top">
           <span class="pulse-dot"></span>
-          <span class="banner-label">CHỦ ĐỀ ĐANG MỞ (DO GIẢNG VIÊN CÀI ĐẶT)</span>
+          <span class="banner-label">Chủ đề bài thi</span>
         </div>
         <div class="banner-main">
-          <span class="banner-icon" id="bannerIcon">🎮</span>
           <div class="banner-text">
             <h3 id="bannerTitle">Đang tải chuyên ngành...</h3>
             <p id="bannerDesc">Vui lòng chờ giây lát</p>
@@ -35,18 +32,18 @@
 
       <form id="joinForm">
         <div class="form-group">
-          <label for="name">👤 Họ và tên của bạn</label>
+          <label for="name">Họ và tên của bạn</label>
           <input id="name" maxlength="40" autocomplete="name" placeholder="Ví dụ: Hoàng Long, Minh Anh..." required autofocus>
         </div>
 
-        <button type="submit" class="btn-start">Bắt đầu làm bài ngay →</button>
+        <button type="submit" class="btn-start">Bắt đầu làm bài →</button>
       </form>
 
-      <p class="tiny">✨ Không có đúng hay sai. Hãy chọn điều gần gũi nhất với cá tính của bạn.</p>
+      <p class="tiny">Không có đáp án đúng sai. Hãy chọn điều phù hợp nhất với bạn.</p>
       
       <div class="hero-actions">
-        <button type="button" class="share-trigger" onclick="openShareQrModal()">📲 Mời bạn bè cùng quét mã</button>
-        <a href="admin.html" class="admin-link">⚙️ Màn hình quản lý & Cài đặt chuyên ngành (Admin)</a>
+        <button type="button" class="share-trigger" onclick="openShareQrModal()">Chia sẻ mã QR cho bạn bè</button>
+        <a href="admin.html" class="admin-link">Trang quản trị dành cho Giảng viên</a>
       </div>
     </section>
   </main>
@@ -55,11 +52,11 @@
   <div id="shareQrModal" class="modal-overlay" onclick="closeShareQrModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeShareQrModal()">&times;</button>
-      <div class="badge">CHIA SẺ TRÒ CHƠI</div>
-      <h2 style="margin:12px 0 6px">Mời bạn cùng tham gia</h2>
-      <p style="margin:0 0 14px;color:var(--muted)">Quét mã QR dưới đây bằng camera điện thoại để vào game:</p>
+      <div class="badge">CHIA SẺ BÀI THI</div>
+      <h2 style="margin:12px 0 6px;font-size:18px;">Mời bạn cùng tham gia</h2>
+      <p style="margin:0 0 14px;color:var(--muted);font-size:13px;">Quét mã QR dưới đây để vào làm bài:</p>
       <div id="shareQrCode" class="big-qr"></div>
-      <div class="qr-url-badge" id="shareUrlDisplay" style="font-size:13px;margin-bottom:12px"></div>
+      <div class="qr-url-badge" id="shareUrlDisplay"></div>
     </div>
   </div>
 

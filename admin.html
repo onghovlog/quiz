@@ -3,79 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tech & Game & AI Multiverse — Live Admin Dashboard</title>
+  <title>Bảng Điều Khiển Quản Trị — Tech Career Multiverse</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
-  <div class="bg-glow"></div>
   <main class="admin">
     <header>
       <div>
-        <div class="badge">✦ LIVE DASHBOARD ✦</div>
-        <h1>TECH CAREER MULTIVERSE</h1>
+        <div class="badge">BẢNG QUẢN TRỊ</div>
+        <h1>TECH CAREER DASHBOARD</h1>
         <div class="status-pill" id="statusBadge">
           <span class="status-dot" id="statusDot"></span>
-          <span id="statusText">Đang kết nối máy chủ...</span>
+          <span id="statusText">Đang kết nối...</span>
         </div>
       </div>
       <div class="admin-toolbar">
-        <button class="secondary btn-accent" onclick="openQrModal()">📱 Phóng to mã QR</button>
-        <button class="secondary" onclick="seedDemoData()">🎲 Thêm dữ liệu mẫu</button>
-        <button class="secondary btn-danger" onclick="resetAllData()">🗑️ Xóa kết quả</button>
-        <button class="secondary" onclick="loadDashboard()">↻ Làm mới</button>
-        <a href="index.html" target="_blank" class="secondary" style="text-decoration:none;display:inline-flex;align-items:center;">🎮 Mở trang người chơi ↗</a>
+        <button class="secondary btn-accent" onclick="openQrModal()">Phóng to mã QR</button>
+        <button class="secondary" onclick="seedDemoData()">Thêm dữ liệu mẫu</button>
+        <button class="secondary btn-danger" onclick="resetAllData()">Xóa kết quả</button>
+        <button class="secondary" onclick="loadDashboard()">Làm mới</button>
+        <a href="index.html" target="_blank" class="secondary" style="text-decoration:none;">Trang người chơi ↗</a>
       </div>
     </header>
 
-    <!-- ADMIN TRACK CONTROLLER: Cài đặt chuyên ngành mở cho sinh viên -->
+    <!-- ADMIN TRACK CONTROLLER -->
     <section class="admin-control-card">
       <div class="control-header">
-        <div class="control-badge">⚙️ CÀI ĐẶT PHÒNG CHƠI</div>
+        <div class="control-badge">CÀI ĐẶT CHUYÊN NGÀNH BÀI THI</div>
         <div class="active-room-pill" id="activeRoomPill">
           <span class="pulse-dot"></span>
-          <span>Chuyên ngành đang mở: <b id="activeTrackNameDisplay">🎮 Lập Trình Game</b></span>
+          <span>Đang mở: <b id="activeTrackNameDisplay">Lập Trình Game</b></span>
         </div>
       </div>
-      <p class="control-desc">Giảng viên/Admin chọn chuyên ngành dưới đây. Sinh viên khi quét mã QR sẽ <b>tự động vào làm bài trắc nghiệm đúng chuyên ngành này</b> mà không cần tự chọn:</p>
+      <p class="control-desc">Chọn chuyên ngành dưới đây. Sinh viên khi quét mã QR sẽ tự động vào làm bài trắc nghiệm theo đúng chuyên ngành đã chọn:</p>
       
       <div class="admin-track-selector" id="adminTrackSelector">
         <button type="button" class="admin-track-btn" data-track="gameDev" onclick="setActiveTrack('gameDev')">
-          <span class="btn-icon">🎮</span>
           <div class="btn-text">
             <strong>Lập Trình Game</strong>
             <small>Gameplay, 3D Art, Game Design, Engine, QA</small>
           </div>
-          <span class="btn-check">✓ Đang mở</span>
+          <span class="btn-check">Đang chọn</span>
         </button>
 
         <button type="button" class="admin-track-btn" data-track="aiFuture" onclick="setActiveTrack('aiFuture')">
-          <span class="btn-icon">🤖</span>
           <div class="btn-text">
             <strong>Lập Trình AI & Data</strong>
             <small>GenAI, Machine Learning, Computer Vision, MLOps</small>
           </div>
-          <span class="btn-check">✓ Đang mở</span>
+          <span class="btn-check">Đang chọn</span>
         </button>
 
         <button type="button" class="admin-track-btn" data-track="webDev" onclick="setActiveTrack('webDev')">
-          <span class="btn-icon">🌐</span>
           <div class="btn-text">
             <strong>Lập Trình Web & Cloud</strong>
             <small>Frontend, Backend, Cloud, DevOps, UI/UX</small>
           </div>
-          <span class="btn-check">✓ Đang mở</span>
+          <span class="btn-check">Đang chọn</span>
         </button>
 
         <button type="button" class="admin-track-btn" data-track="itGeneral" onclick="setActiveTrack('itGeneral')">
-          <span class="btn-icon">🔮</span>
           <div class="btn-text">
             <strong>Đa Vũ Trụ CNTT</strong>
             <small>Tổng hợp AI, Game, Web, CyberSec, Product</small>
           </div>
-          <span class="btn-check">✓ Đang mở</span>
+          <span class="btn-check">Đang chọn</span>
         </button>
       </div>
     </section>
@@ -84,43 +79,43 @@
     <section class="qr-card">
       <div id="qrCodePreview" class="qr-container"></div>
       <div class="qr-info">
-        <h3>📲 Mã QR vào phòng chơi cho sinh viên</h3>
-        <p>Sinh viên quét mã bên dưới để vào làm trắc nghiệm chuyên ngành: <b id="qrTrackNotice" style="color:#c4b5fd;">🎮 Lập Trình Game</b></p>
+        <h3>Mã QR tham gia bài thi</h3>
+        <p>Sinh viên quét mã bên dưới để vào làm trắc nghiệm chuyên ngành: <b id="qrTrackNotice" style="color:var(--accent);">Lập Trình Game</b></p>
         <div>
           <span class="qr-url-badge" id="playerUrlDisplay">Đang tải link...</span>
         </div>
         <div class="qr-actions">
-          <button type="button" class="secondary btn-sm btn-accent" onclick="openQrModal()">🔍 Chiếu toàn màn hình (Máy chiếu)</button>
-          <button type="button" class="secondary btn-sm" onclick="copyPlayerUrl()">📋 Sao chép link</button>
-          <input type="text" id="customHostInput" class="qr-ip-input" placeholder="Đổi IP máy (nếu cần)" title="Nhập IP LAN (ví dụ: 192.168.1.8) rồi ấn Enter">
+          <button type="button" class="secondary btn-sm btn-accent" onclick="openQrModal()">Chiếu toàn màn hình</button>
+          <button type="button" class="secondary btn-sm" onclick="copyPlayerUrl()">Sao chép link</button>
+          <input type="text" id="customHostInput" class="qr-ip-input" placeholder="IP máy (vd: 192.168.1.8)" title="Nhập IP LAN rồi ấn Enter">
         </div>
       </div>
     </section>
 
     <!-- Track Filter Bar -->
     <section class="filter-section">
-      <div class="filter-title">🔍 Lọc bảng xếp hạng:</div>
+      <div class="filter-title">Lọc danh sách:</div>
       <div class="filter-pills" id="trackFilterPills">
-        <button type="button" class="filter-pill active" data-filter="all">🌟 Tất cả chuyên ngành</button>
-        <button type="button" class="filter-pill" data-filter="gameDev">🎮 Chuyên ngành Game</button>
-        <button type="button" class="filter-pill" data-filter="aiFuture">🤖 Chuyên ngành AI & Data</button>
-        <button type="button" class="filter-pill" data-filter="webDev">🌐 Chuyên ngành Web & Cloud</button>
-        <button type="button" class="filter-pill" data-filter="itGeneral">🔮 Đa vũ trụ CNTT</button>
+        <button type="button" class="filter-pill active" data-filter="all">Tất cả chuyên ngành</button>
+        <button type="button" class="filter-pill" data-filter="gameDev">Lập Trình Game</button>
+        <button type="button" class="filter-pill" data-filter="aiFuture">Lập Trình AI & Data</button>
+        <button type="button" class="filter-pill" data-filter="webDev">Lập Trình Web & Cloud</button>
+        <button type="button" class="filter-pill" data-filter="itGeneral">Đa Vũ Trụ CNTT</button>
       </div>
     </section>
 
     <!-- Metrics -->
     <section class="stats">
       <div class="metric">
-        <span>Tổng số sinh viên tham gia</span>
+        <span>Tổng số sinh viên</span>
         <strong id="total">0</strong>
       </div>
       <div class="metric">
-        <span>Chuyên ngành hot nhất</span>
+        <span>Chuyên ngành phổ biến nhất</span>
         <strong id="topTrack">—</strong>
       </div>
       <div class="metric">
-        <span>Vũ trụ nghề nghiệp dẫn đầu</span>
+        <span>Hướng đi dẫn đầu</span>
         <strong id="leader">—</strong>
       </div>
     </section>
@@ -128,16 +123,16 @@
     <!-- Distribution & Participants Grid -->
     <section class="admin-grid">
       <div class="panel">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-          <h2 style="margin:0;">Phân bố Vũ trụ nghề nghiệp</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h2 style="margin:0;">Phân bố Hướng đi</h2>
           <span id="distributionTrackName" class="badge">TẤT CẢ</span>
         </div>
         <div id="bars"></div>
       </div>
       <div class="panel">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-          <h2 style="margin:0;">Người tham gia mới nhất</h2>
-          <small id="updateNotice" style="color:var(--muted);font-size:12px;">Tự cập nhật mỗi 3s</small>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h2 style="margin:0;">Thí sinh mới nhất</h2>
+          <small id="updateNotice" style="color:var(--muted);font-size:11.5px;">Cập nhật mỗi 3s</small>
         </div>
         <div id="recent"></div>
       </div>
@@ -146,14 +141,14 @@
 
   <!-- Fullscreen QR Modal for Projectors -->
   <div id="qrModal" class="modal-overlay" onclick="closeQrModal(event)">
-    <div class="modal-content modal-lg" onclick="event.stopPropagation()">
+    <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeQrModal()">&times;</button>
-      <div class="badge">THAM GIA NGAY</div>
-      <h2 style="margin:12px 0 4px">Quét mã để bắt đầu</h2>
-      <div class="modal-track-badge" id="modalTrackBadge">Chủ đề: 🎮 Lập Trình Game</div>
+      <div class="badge">THAM GIA BÀI THI</div>
+      <h2 style="margin:12px 0 4px;font-size:18px;">Quét mã để làm bài</h2>
+      <div class="modal-track-badge" id="modalTrackBadge">Chuyên ngành: Lập Trình Game</div>
       <div id="bigQrCode" class="big-qr"></div>
-      <div class="qr-url-badge" id="modalUrlDisplay" style="font-size:14px;margin-bottom:12px"></div>
-      <p class="tiny" style="color:var(--muted)">Sinh viên dùng camera điện thoại quét mã QR và chỉ cần nhập tên để bắt đầu bài trắc nghiệm</p>
+      <div class="qr-url-badge" id="modalUrlDisplay"></div>
+      <p class="tiny" style="color:var(--muted);margin-top:10px;">Dùng camera điện thoại quét mã QR và nhập họ tên để bắt đầu</p>
     </div>
   </div>
 
