@@ -146,6 +146,37 @@ async function setActiveTrack(trackKey) {
   } catch (err) {
     console.warn("Could not save activeTrack to server:", err);
   }
+
+  // Tự động thu nhỏ box cài đặt sau khi chọn xong (sau 600ms) để giao diện gọn gàng
+  setTimeout(() => {
+    toggleCardCollapse("adminControlCard", true);
+  }, 600);
+}
+
+function toggleCardCollapse(cardId, forceState) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  if (typeof forceState === "boolean") {
+    card.classList.toggle("collapsed", forceState);
+  } else {
+    card.classList.toggle("collapsed");
+  }
+  const isCollapsed = card.classList.contains("collapsed");
+  try {
+    localStorage.setItem(`wm_collapse_${cardId}`, isCollapsed ? "1" : "0");
+  } catch (e) {}
+}
+
+function restoreCollapsedStates() {
+  ["adminControlCard", "adminQrCard"].forEach(id => {
+    try {
+      const saved = localStorage.getItem(`wm_collapse_${id}`);
+      if (saved === "1") {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("collapsed");
+      }
+    } catch (e) {}
+  });
 }
 
 async function fetchInitialConfig() {
@@ -435,5 +466,6 @@ function escapeHtml(s) {
 
 fetchInitialConfig();
 initQr();
+restoreCollapsedStates();
 loadDashboard();
 setInterval(loadDashboard, 3000);
