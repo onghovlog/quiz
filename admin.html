@@ -26,21 +26,71 @@
         <button class="secondary" onclick="seedDemoData()">🎲 Thêm dữ liệu mẫu</button>
         <button class="secondary btn-danger" onclick="resetAllData()">🗑️ Xóa kết quả</button>
         <button class="secondary" onclick="loadDashboard()">↻ Làm mới</button>
-        <a href="index.html" class="secondary" style="text-decoration:none;display:inline-flex;align-items:center;">🎮 Vào trang chơi</a>
+        <a href="index.html" target="_blank" class="secondary" style="text-decoration:none;display:inline-flex;align-items:center;">🎮 Mở trang người chơi ↗</a>
       </div>
     </header>
+
+    <!-- ADMIN TRACK CONTROLLER: Cài đặt chuyên ngành mở cho sinh viên -->
+    <section class="admin-control-card">
+      <div class="control-header">
+        <div class="control-badge">⚙️ CÀI ĐẶT PHÒNG CHƠI</div>
+        <div class="active-room-pill" id="activeRoomPill">
+          <span class="pulse-dot"></span>
+          <span>Chuyên ngành đang mở: <b id="activeTrackNameDisplay">🎮 Lập Trình Game</b></span>
+        </div>
+      </div>
+      <p class="control-desc">Giảng viên/Admin chọn chuyên ngành dưới đây. Sinh viên khi quét mã QR sẽ <b>tự động vào làm bài trắc nghiệm đúng chuyên ngành này</b> mà không cần tự chọn:</p>
+      
+      <div class="admin-track-selector" id="adminTrackSelector">
+        <button type="button" class="admin-track-btn" data-track="gameDev" onclick="setActiveTrack('gameDev')">
+          <span class="btn-icon">🎮</span>
+          <div class="btn-text">
+            <strong>Lập Trình Game</strong>
+            <small>Gameplay, 3D Art, Game Design, Engine, QA</small>
+          </div>
+          <span class="btn-check">✓ Đang mở</span>
+        </button>
+
+        <button type="button" class="admin-track-btn" data-track="aiFuture" onclick="setActiveTrack('aiFuture')">
+          <span class="btn-icon">🤖</span>
+          <div class="btn-text">
+            <strong>Lập Trình AI & Data</strong>
+            <small>GenAI, Machine Learning, Computer Vision, MLOps</small>
+          </div>
+          <span class="btn-check">✓ Đang mở</span>
+        </button>
+
+        <button type="button" class="admin-track-btn" data-track="webDev" onclick="setActiveTrack('webDev')">
+          <span class="btn-icon">🌐</span>
+          <div class="btn-text">
+            <strong>Lập Trình Web & Cloud</strong>
+            <small>Frontend, Backend, Cloud, DevOps, UI/UX</small>
+          </div>
+          <span class="btn-check">✓ Đang mở</span>
+        </button>
+
+        <button type="button" class="admin-track-btn" data-track="itGeneral" onclick="setActiveTrack('itGeneral')">
+          <span class="btn-icon">🔮</span>
+          <div class="btn-text">
+            <strong>Đa Vũ Trụ CNTT</strong>
+            <small>Tổng hợp AI, Game, Web, CyberSec, Product</small>
+          </div>
+          <span class="btn-check">✓ Đang mở</span>
+        </button>
+      </div>
+    </section>
 
     <!-- QR Code Quick Card -->
     <section class="qr-card">
       <div id="qrCodePreview" class="qr-container"></div>
       <div class="qr-info">
-        <h3>📲 Quét mã để vào màn hình người chơi</h3>
-        <p>Sinh viên quét mã này bằng camera điện thoại để chọn chuyên ngành (Game, AI, Web, Đa vũ trụ) và làm bài trắc nghiệm 7 câu hỏi.</p>
+        <h3>📲 Mã QR vào phòng chơi cho sinh viên</h3>
+        <p>Sinh viên quét mã bên dưới để vào làm trắc nghiệm chuyên ngành: <b id="qrTrackNotice" style="color:#c4b5fd;">🎮 Lập Trình Game</b></p>
         <div>
           <span class="qr-url-badge" id="playerUrlDisplay">Đang tải link...</span>
         </div>
         <div class="qr-actions">
-          <button type="button" class="secondary btn-sm" onclick="openQrModal()">🔍 Chiếu toàn màn hình</button>
+          <button type="button" class="secondary btn-sm btn-accent" onclick="openQrModal()">🔍 Chiếu toàn màn hình (Máy chiếu)</button>
           <button type="button" class="secondary btn-sm" onclick="copyPlayerUrl()">📋 Sao chép link</button>
           <input type="text" id="customHostInput" class="qr-ip-input" placeholder="Đổi IP máy (nếu cần)" title="Nhập IP LAN (ví dụ: 192.168.1.8) rồi ấn Enter">
         </div>
@@ -49,7 +99,7 @@
 
     <!-- Track Filter Bar -->
     <section class="filter-section">
-      <div class="filter-title">🔍 Lọc theo chuyên ngành:</div>
+      <div class="filter-title">🔍 Lọc bảng xếp hạng:</div>
       <div class="filter-pills" id="trackFilterPills">
         <button type="button" class="filter-pill active" data-filter="all">🌟 Tất cả chuyên ngành</button>
         <button type="button" class="filter-pill" data-filter="gameDev">🎮 Chuyên ngành Game</button>
@@ -96,14 +146,14 @@
 
   <!-- Fullscreen QR Modal for Projectors -->
   <div id="qrModal" class="modal-overlay" onclick="closeQrModal(event)">
-    <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-content modal-lg" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeQrModal()">&times;</button>
       <div class="badge">THAM GIA NGAY</div>
-      <h2 style="margin:12px 0 6px">Quét mã để chọn chuyên ngành & khám phá</h2>
-      <p style="margin:0 0 14px;color:var(--muted)">Dùng camera điện thoại để quét mã bên dưới:</p>
+      <h2 style="margin:12px 0 4px">Quét mã để bắt đầu</h2>
+      <div class="modal-track-badge" id="modalTrackBadge">Chủ đề: 🎮 Lập Trình Game</div>
       <div id="bigQrCode" class="big-qr"></div>
       <div class="qr-url-badge" id="modalUrlDisplay" style="font-size:14px;margin-bottom:12px"></div>
-      <p class="tiny" style="color:var(--muted)">Hỗ trợ Game Dev, Lập trình AI, Web Dev và Đa vũ trụ CNTT</p>
+      <p class="tiny" style="color:var(--muted)">Sinh viên dùng camera điện thoại quét mã QR và chỉ cần nhập tên để bắt đầu bài trắc nghiệm</p>
     </div>
   </div>
 

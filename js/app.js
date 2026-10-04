@@ -7,16 +7,71 @@ function getApiUrl() {
 
 const API = getApiUrl();
 
-// Highlight selected track card
-const trackCards = document.querySelectorAll(".track-card");
-trackCards.forEach(card => {
-  card.addEventListener("click", () => {
-    trackCards.forEach(c => c.classList.remove("active"));
-    card.classList.add("active");
-    const radio = card.querySelector("input[type='radio']");
-    if (radio) radio.checked = true;
-  });
-});
+const trackInfo = {
+  gameDev: {
+    name: "Lập Trình Game",
+    icon: "🎮",
+    tagline: "Gameplay, 3D Art, Game Design, Engine, QA Tester",
+    badge: "CHUYÊN NGÀNH GAME"
+  },
+  aiFuture: {
+    name: "Lập Trình AI & Data",
+    icon: "🤖",
+    tagline: "GenAI, Machine Learning, Computer Vision, MLOps",
+    badge: "CHUYÊN NGÀNH AI"
+  },
+  webDev: {
+    name: "Lập Trình Web & Cloud",
+    icon: "🌐",
+    tagline: "Frontend, Backend API, Cloud, DevOps, UI/UX",
+    badge: "CHUYÊN NGÀNH WEB"
+  },
+  itGeneral: {
+    name: "Đa Vũ Trụ CNTT",
+    icon: "🔮",
+    tagline: "Khám phá tổng hợp: AI, Game, Web, CyberSec, Product",
+    badge: "TỔNG HỢP CNTT"
+  }
+};
+
+let activeTrack = "gameDev";
+
+// Read track from URL parameter if available (?track=gameDev)
+const urlParams = new URLSearchParams(window.location.search);
+const paramTrack = urlParams.get("track");
+
+async function loadActiveTrack() {
+  if (paramTrack && trackInfo[paramTrack]) {
+    activeTrack = paramTrack;
+    renderActiveTrackBanner();
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/config`);
+    if (res.ok) {
+      const cfg = await res.json();
+      if (cfg.activeTrack && trackInfo[cfg.activeTrack]) {
+        activeTrack = cfg.activeTrack;
+      }
+    }
+  } catch (err) {
+    console.warn("Could not fetch active track from API, using default:", err);
+  }
+
+  renderActiveTrackBanner();
+}
+
+function renderActiveTrackBanner() {
+  const info = trackInfo[activeTrack] || trackInfo.gameDev;
+  const iconEl = document.getElementById("bannerIcon");
+  const titleEl = document.getElementById("bannerTitle");
+  const descEl = document.getElementById("bannerDesc");
+
+  if (iconEl) iconEl.textContent = info.icon;
+  if (titleEl) titleEl.textContent = info.name;
+  if (descEl) descEl.textContent = info.tagline;
+}
 
 document.getElementById("joinForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -24,19 +79,16 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
   const name = nameInput ? nameInput.value.trim() : "";
   if (!name) return;
 
-  const selectedTrackEl = document.querySelector("input[name='track']:checked");
-  const track = selectedTrackEl ? selectedTrackEl.value : "itGeneral";
-
   const submitBtn = e.target.querySelector("button[type='submit']");
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = "Đang khởi tạo vũ trụ...";
+    submitBtn.textContent = "Đang vào phòng thi...";
   }
 
   let player = {
     id: Date.now(),
     name: name,
-    track: track,
+    track: activeTrack,
     joinedAt: new Date().toISOString()
   };
 
@@ -44,7 +96,7 @@ document.getElementById("joinForm").addEventListener("submit", async (e) => {
     const res = await fetch(`${API}/players`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, track, joinedAt: player.joinedAt })
+      body: JSON.stringify({ name, track: activeTrack, joinedAt: player.joinedAt })
     });
     if (res.ok) {
       player = await res.json();
@@ -64,7 +116,7 @@ function openShareQrModal() {
   const display = document.getElementById("shareUrlDisplay");
   const container = document.getElementById("shareQrCode");
   
-  const currentUrl = `${window.location.origin}/index.html`;
+  const currentUrl = `${window.location.origin}/index.html?track=${encodeURIComponent(activeTrack)}`;
 
   if (display) display.textContent = currentUrl;
   if (container && !shareQr && typeof QRCode !== "undefined") {
@@ -85,3 +137,5 @@ function closeShareQrModal(e) {
   const modal = document.getElementById("shareQrModal");
   if (modal) modal.classList.remove("active");
 }
+
+loadActiveTrack();

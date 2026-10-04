@@ -20,9 +20,11 @@ const MIME_TYPES = {
 function readDb() {
   try {
     const raw = fs.readFileSync(DB_FILE, "utf8");
-    return JSON.parse(raw);
+    const data = JSON.parse(raw);
+    if (!data.config) data.config = { activeTrack: "gameDev" };
+    return data;
   } catch (err) {
-    return { tracks: [], universesMeta: {}, players: [], results: [], questions: [] };
+    return { config: { activeTrack: "gameDev" }, tracks: [], universesMeta: {}, players: [], results: [], questions: [] };
   }
 }
 
@@ -59,11 +61,46 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // --- CONFIG ENDPOINT (ADMIN ACTIVE TRACK SETTINGS) ---
+  if (pathname === "/config") {
+    const db = readDb();
+    if (req.method === "GET") {
+      res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+      res.end(JSON.stringify({
+        activeTrack: (db.config && db.config.activeTrack) ? db.config.activeTrack : "gameDev",
+        tracks: db.tracks || [],
+        universesMeta: db.universesMeta || {}
+      }));
+      return;
+    }
+    if (req.method === "POST") {
+      let body = "";
+      req.on("data", chunk => (body += chunk));
+      req.on("end", () => {
+        try {
+          const payload = JSON.parse(body || "{}");
+          if (!db.config) db.config = {};
+          if (payload.activeTrack) {
+            db.config.activeTrack = payload.activeTrack;
+          }
+          writeDb(db);
+          res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+          res.end(JSON.stringify({ success: true, activeTrack: db.config.activeTrack }));
+        } catch (e) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid JSON" }));
+        }
+      });
+      return;
+    }
+  }
+
   // --- TRACKS METADATA ENDPOINT ---
   if (pathname === "/tracks" && req.method === "GET") {
     const db = readDb();
     res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
     res.end(JSON.stringify({
+      activeTrack: (db.config && db.config.activeTrack) ? db.config.activeTrack : "gameDev",
       tracks: db.tracks || [],
       universesMeta: db.universesMeta || {}
     }));
@@ -74,7 +111,8 @@ const server = http.createServer((req, res) => {
   if (pathname === "/questions" && req.method === "GET") {
     const db = readDb();
     let list = db.questions || [];
-    const track = query.track;
+    const activeTrack = (db.config && db.config.activeTrack) ? db.config.activeTrack : "gameDev";
+    const track = query.track || activeTrack;
     if (track && track !== "all") {
       const filtered = list.filter(q => q.track === track);
       if (filtered.length > 0) {
@@ -105,7 +143,10 @@ const server = http.createServer((req, res) => {
         try {
           const item = JSON.parse(body || "{}");
           item.id = (db.players && db.players.length > 0) ? Math.max(...db.players.map(p => p.id || 0)) + 1 : 1;
-          if (!item.track) item.track = "itGeneral";
+          const defaultTrack = (db.config && db.config.activeTrack) ? db.config.activeTrack : "gameDev";
+          if (!item.track || item.track === "default") {
+            item.track = defaultTrack;
+          }
           if (!db.players) db.players = [];
           db.players.push(item);
           writeDb(db);

@@ -8,10 +8,10 @@ function getApiUrl() {
 const API = getApiUrl();
 
 const trackInfo = {
-  itGeneral: { name: "Đa Vũ Trụ CNTT", icon: "🔮", color: "#b388ff" },
   gameDev: { name: "Lập Trình Game", icon: "🎮", color: "#ff6b81" },
   aiFuture: { name: "Lập Trình AI & Data", icon: "🤖", color: "#00d2d3" },
-  webDev: { name: "Lập Trình Web & Cloud", icon: "🌐", color: "#54a0ff" }
+  webDev: { name: "Lập Trình Web & Cloud", icon: "🌐", color: "#54a0ff" },
+  itGeneral: { name: "Đa Vũ Trụ CNTT", icon: "🔮", color: "#b388ff" }
 };
 
 // Universe meta fallback
@@ -47,6 +47,7 @@ const defaultUniversesMeta = {
   }
 };
 
+let currentActiveTrack = "gameDev";
 let activeFilter = "all";
 let universesMeta = defaultUniversesMeta;
 let previewQr = null;
@@ -54,12 +55,13 @@ let modalQr = null;
 let currentPlayerUrl = "";
 
 function getPlayerUrl(customHost) {
+  let baseOrigin = window.location.origin;
   if (customHost && customHost.trim()) {
     const host = customHost.trim();
     const port = window.location.port ? `:${window.location.port}` : "";
-    return `${window.location.protocol}//${host}${port}/index.html`;
+    baseOrigin = `${window.location.protocol}//${host}${port}`;
   }
-  return `${window.location.origin}/index.html`;
+  return `${baseOrigin}/index.html?track=${encodeURIComponent(currentActiveTrack)}`;
 }
 
 function renderQrCodes(url) {
@@ -87,8 +89,8 @@ function renderQrCodes(url) {
     modalEl.innerHTML = "";
     modalQr = new QRCode(modalEl, {
       text: url,
-      width: 240,
-      height: 240,
+      width: 250,
+      height: 250,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
@@ -96,8 +98,75 @@ function renderQrCodes(url) {
   }
 }
 
+function updateActiveTrackUI(trackKey) {
+  currentActiveTrack = trackKey;
+  const info = trackInfo[trackKey] || { name: trackKey, icon: "🎯" };
+  const fullTitle = `${info.icon} ${info.name}`;
+
+  // Update Buttons
+  const buttons = document.querySelectorAll(".admin-track-btn");
+  buttons.forEach(btn => {
+    const t = btn.getAttribute("data-track");
+    if (t === trackKey) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  // Update displays
+  const nameDisplay = document.getElementById("activeTrackNameDisplay");
+  if (nameDisplay) nameDisplay.textContent = fullTitle;
+
+  const qrNotice = document.getElementById("qrTrackNotice");
+  if (qrNotice) qrNotice.textContent = fullTitle;
+
+  const modalTrackBadge = document.getElementById("modalTrackBadge");
+  if (modalTrackBadge) modalTrackBadge.textContent = `Chủ đề bài thi: ${fullTitle}`;
+
+  // Re-generate QR
+  const hostInput = document.getElementById("customHostInput");
+  const host = hostInput ? hostInput.value : "";
+  renderQrCodes(getPlayerUrl(host));
+}
+
+async function setActiveTrack(trackKey) {
+  if (!trackKey) return;
+  updateActiveTrackUI(trackKey);
+
+  try {
+    const res = await fetch(`${API}/config`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ activeTrack: trackKey })
+    });
+    if (res.ok) {
+      console.log("Updated active track on server to:", trackKey);
+    }
+  } catch (err) {
+    console.warn("Could not save activeTrack to server:", err);
+  }
+}
+
+async function fetchInitialConfig() {
+  try {
+    const res = await fetch(`${API}/config`);
+    if (res.ok) {
+      const config = await res.json();
+      if (config.activeTrack) {
+        currentActiveTrack = config.activeTrack;
+      }
+      if (config.universesMeta) {
+        universesMeta = config.universesMeta;
+      }
+    }
+  } catch (e) {
+    console.warn("Using default active track");
+  }
+  updateActiveTrackUI(currentActiveTrack);
+}
+
 function initQr() {
-  const defaultUrl = getPlayerUrl();
   const hostInput = document.getElementById("customHostInput");
   if (hostInput) {
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
@@ -112,7 +181,7 @@ function initQr() {
       }
     });
   }
-  renderQrCodes(defaultUrl);
+  renderQrCodes(getPlayerUrl());
 }
 
 function openQrModal() {
@@ -164,7 +233,6 @@ function updateConnectionStatus(isOnline, serverHost) {
   }
 }
 
-// Find universe info across tracks
 function getUniverseInfo(uKey, trackKey) {
   if (trackKey && universesMeta[trackKey] && universesMeta[trackKey][uKey]) {
     return universesMeta[trackKey][uKey];
@@ -181,15 +249,6 @@ async function loadDashboard() {
   try {
     let results = [];
     let isConnected = false;
-
-    // Fetch tracks meta if available
-    try {
-      const metaRes = await fetch(`${API}/tracks`);
-      if (metaRes.ok) {
-        const tData = await metaRes.json();
-        if (tData.universesMeta) universesMeta = tData.universesMeta;
-      }
-    } catch (err) {}
 
     try {
       const res = await fetch(`${API}/results`);
@@ -376,6 +435,7 @@ function escapeHtml(s) {
   }[m]));
 }
 
+fetchInitialConfig();
 initQr();
 loadDashboard();
 setInterval(loadDashboard, 3000);

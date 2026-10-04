@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tech Multiverse — Khám Phá Chuyên Ngành CNTT, Game & AI</title>
+  <title>Tech Multiverse — Khám Phá Nghề Nghiệp CNTT, Game & AI</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,64 +15,38 @@
     <section class="hero card">
       <div class="badge">✦ TECH CAREER MULTIVERSE ✦</div>
       <div class="orbit">🚀</div>
-      <h1>Khám phá <span>Chuyên Ngành & Vũ Trụ</span> của bạn</h1>
-      <p class="hero-sub">7 câu hỏi trắc nghiệm tình huống. Khám phá ngay hướng đi nổi trội và thế mạnh tiềm ẩn của bạn trong thế giới công nghệ.</p>
+      <h1>Khám phá <span>Vũ Trụ Nghề Nghiệp</span></h1>
+      <p class="hero-sub">7 câu hỏi trắc nghiệm tình huống. Khám phá ngay hướng đi nổi trội và tiềm năng công nghệ của bạn.</p>
       
+      <!-- Banner Chủ Đề Do Admin Chỉ Định -->
+      <div class="active-track-banner" id="activeTrackBanner">
+        <div class="banner-top">
+          <span class="pulse-dot"></span>
+          <span class="banner-label">CHỦ ĐỀ ĐANG MỞ (DO GIẢNG VIÊN CÀI ĐẶT)</span>
+        </div>
+        <div class="banner-main">
+          <span class="banner-icon" id="bannerIcon">🎮</span>
+          <div class="banner-text">
+            <h3 id="bannerTitle">Đang tải chuyên ngành...</h3>
+            <p id="bannerDesc">Vui lòng chờ giây lát</p>
+          </div>
+        </div>
+      </div>
+
       <form id="joinForm">
         <div class="form-group">
           <label for="name">👤 Họ và tên của bạn</label>
           <input id="name" maxlength="40" autocomplete="name" placeholder="Ví dụ: Hoàng Long, Minh Anh..." required autofocus>
         </div>
 
-        <div class="form-group">
-          <label>🎯 Chọn chuyên ngành bạn muốn khám phá</label>
-          <div class="track-grid" id="trackSelector">
-            <label class="track-card active" data-track="itGeneral">
-              <input type="radio" name="track" value="itGeneral" checked>
-              <div class="track-icon">🔮</div>
-              <div class="track-text">
-                <strong>Đa Vũ Trụ CNTT</strong>
-                <span>Tổng hợp AI, Game, Web, CyberSec, Product</span>
-              </div>
-            </label>
-
-            <label class="track-card" data-track="gameDev">
-              <input type="radio" name="track" value="gameDev">
-              <div class="track-icon">🎮</div>
-              <div class="track-text">
-                <strong>Lập Trình Game</strong>
-                <span>Gameplay, 3D Art, Game Design, Engine, QA</span>
-              </div>
-            </label>
-
-            <label class="track-card" data-track="aiFuture">
-              <input type="radio" name="track" value="aiFuture">
-              <div class="track-icon">🤖</div>
-              <div class="track-text">
-                <strong>Lập Trình AI & Data</strong>
-                <span>GenAI, Machine Learning, Computer Vision, MLOps</span>
-              </div>
-            </label>
-
-            <label class="track-card" data-track="webDev">
-              <input type="radio" name="track" value="webDev">
-              <div class="track-icon">🌐</div>
-              <div class="track-text">
-                <strong>Lập Trình Web & Cloud</strong>
-                <span>Frontend, Backend API, Cloud, DevOps, UI/UX</span>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-start">Bắt đầu khám phá ngay →</button>
+        <button type="submit" class="btn-start">Bắt đầu làm bài ngay →</button>
       </form>
 
       <p class="tiny">✨ Không có đúng hay sai. Hãy chọn điều gần gũi nhất với cá tính của bạn.</p>
       
       <div class="hero-actions">
-        <button type="button" class="share-trigger" onclick="openShareQrModal()">📲 Quét mã QR tham gia cùng bạn bè</button>
-        <a href="admin.html" class="admin-link">📊 Xem bảng kết quả trực tiếp (Admin)</a>
+        <button type="button" class="share-trigger" onclick="openShareQrModal()">📲 Mời bạn bè cùng quét mã</button>
+        <a href="admin.html" class="admin-link">⚙️ Màn hình quản lý & Cài đặt chuyên ngành (Admin)</a>
       </div>
     </section>
   </main>
@@ -82,7 +56,7 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeShareQrModal()">&times;</button>
       <div class="badge">CHIA SẺ TRÒ CHƠI</div>
-      <h2 style="margin:12px 0 6px">Mời bạn bè cùng thử sức</h2>
+      <h2 style="margin:12px 0 6px">Mời bạn cùng tham gia</h2>
       <p style="margin:0 0 14px;color:var(--muted)">Quét mã QR dưới đây bằng camera điện thoại để vào game:</p>
       <div id="shareQrCode" class="big-qr"></div>
       <div class="qr-url-badge" id="shareUrlDisplay" style="font-size:13px;margin-bottom:12px"></div>
